@@ -91,7 +91,7 @@ validate_not_in() {
       message_opts="${message_opts}${option}"
     done
 
-    message="Boxfile 'build' section attribute $label value must be one of the following: ${message_opts}"
+    message="Boxfile 'build' section attribute $label value must not be one of the following: ${message_opts}"
 
     print_fatal "invalid value", "${message}"
     exit 1
