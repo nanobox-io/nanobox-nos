@@ -13,10 +13,11 @@
 # templating
 # simple find/replace within existing file
 
-lib_dir="$(dirname $BASH_SOURCE)/lib")
+lib_dir="$(dirname $BASH_SOURCE)/lib"
 
 # include components
 . ${lib_dir}/evars.sh
 . ${lib_dir}/helpers.sh
 . ${lib_dir}/hooks.sh
 . ${lib_dir}/payload.sh
+. ${lib_dir}/output.sh
