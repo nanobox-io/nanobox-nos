@@ -25,17 +25,29 @@ run_hooks() {
   exec_type="PL_boxfile_${1}_exec_type"
   case ${!exec_type} in
     "string" )
+      print_subtask_start ${1/_/ }
       cmd=PL_boxfile_${1}_exec_value
-      echo "executing string ${!cmd}"
+      echo "$ ${!cmd}"
       (cd $PL_code_dir_value; ${!cmd})
+      if [ $? -eq 0 ]; then
+        print_subtask_success
+      else
+        print_subtask_fail
+      fi
       ;;
     "array" )
       for index in $(seq $PL_boxfile_${1}_exec_length); do
         cmd_type="PL_boxfile_${1}_exec_${index}_type"
         if [ "${!cmd_type}" = "string"]; then
+          print_subtask_start "${1/_/ } ${index}"
           cmd="PL_boxfile_${1}_exec_${index}_value"
-          echo "executing array string ${!cmd}"
+          echo "$ ${!cmd}"
           (cd $PL_code_dir_value; ${!cmd})
+          if [ $? -eq 0 ]; then
+            print_subtask_success
+          else
+            print_subtask_fail
+          fi
         fi
       done
       ;;

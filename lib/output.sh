@@ -183,6 +183,9 @@ print_subtask_start() {
 # <<<<<<<<< [√] SUCCESS
 print_subtask_success() {
   echo "<<<<<<<<< [√] SUCCESS"
+
+  # end with a newline
+  echo ""
 }
 
 # print_subtask_fail(0)
@@ -197,6 +200,9 @@ print_subtask_success() {
 # <<<<<<<<< [!] FAILED
 print_subtask_fail() {
   echo "<<<<<<<<< [!] FAILED"
+
+  # end with a newline
+  echo ""
 }
 
 # print_bullet(1)
