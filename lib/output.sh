@@ -27,7 +27,7 @@ print_header() {
   fi
 
   # start with a newline
-  echo ""
+  # echo ""
 
   # print the left column
   counter=$left
@@ -54,7 +54,7 @@ print_header() {
 
   # end with two newlines
   echo ""
-  echo ""
+  # echo ""
 }
 
 # print_process_start(1)
@@ -77,7 +77,7 @@ print_process_start() {
   middle=$(expr $max_length - $(expr $left + $right))
 
   # start with a newline
-  echo ""
+  # echo ""
 
   # print label
   echo -n $label
@@ -97,7 +97,7 @@ print_process_start() {
 
   # end with two newlines
   echo ""
-  echo ""
+  # echo ""
 }
 
 # print_process_end(1)
@@ -120,7 +120,7 @@ print_process_end() {
   middle=$(expr $max_length - $(expr $left + $right))
 
   # start with a newline
-  echo ""
+  # echo ""
 
   # print the left column
   echo -n "<= "
@@ -140,7 +140,7 @@ print_process_end() {
 
   # end with two newlines
   echo ""
-  echo ""
+  # echo ""
 }
 
 # print_subtask_start(1)
@@ -159,7 +159,7 @@ print_subtask_start() {
   label=$(upcase "$1")
 
   # start with a newline
-  echo ""
+  # echo ""
 
   # print left column
   echo -n "::::::::: "
@@ -238,7 +238,7 @@ print_bullet() {
 # more information : bit.ly/2sA9b
 print_warning() {
   # start with a newline
-  echo ""
+  # echo ""
 
   # print header
   echo "-----------------------------  WARNING  -----------------------------"
@@ -263,7 +263,7 @@ print_warning() {
 print_fatal() {
   label=$(upcase "$1")
   # start with a newline
-  echo ""
+  # echo ""
 
   # print header
   echo "! ${label} !"
@@ -332,7 +332,7 @@ print_block() {
   done
 
   # print an extra newline
-  echo ""
+  # echo ""
 }
 
 # upcase(1)
