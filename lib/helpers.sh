@@ -7,7 +7,7 @@
 # 
 # A simple expressive shortcut to install a pkgsrc package via pkgin
 install() {
-  run_process "install ${1}" "pkgin -y in $1"
+  run_process "installing ${1}" "pkgin -y in $1"
 }
 
 # run_process(2)
@@ -17,8 +17,8 @@ install() {
 # 
 # A helper to run a process and format the output according to the styleguide
 run_process() {
-  print_process_start $1
-  $2 | sed -e 's/^/   /;s/\\n\\n/\\n/'
+  print_process_start "${1}"
+  $2 2>&1 | sed -e 's/^/   /;s/\n\n/\n/'
   print_process_end
 }
 
@@ -29,9 +29,9 @@ run_process() {
 # 
 # # A helper to run a subprocess and format the output according to the styleguide
 run_subprocess() {
-  print_subprocess_start $1
+  print_subprocess_start "${1}"
   echo "   $ ${2}"
-  $2 | sed -e 's/^/   /;s/\\n\\n/\\n/'
+  $2 2>&1 | sed -e 's/^/   /;s/\n\n/\n/'
   if [ $? -eq 0 ]; then
     print_subtask_success
   else
