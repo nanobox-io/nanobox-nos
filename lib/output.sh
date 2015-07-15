@@ -65,19 +65,19 @@ print_header() {
 # 
 # Example:
 # 
-# print_process_start "build output"
+# print_process_start "installing ruby-2.2"
 # 
 # would produce:
-# BUILD OUTPUT ::::::::::::::::::::::::::::::::::::::::::::::::::::: =>
+# INSTALLING RUBY-2.2 ------------------------------------------------>
 print_process_start() {
   label=$(upcase "$1")
   max_length=70
   left=$(expr ${#label} + 1)
-  right=3
+  right=1
   middle=$(expr $max_length - $(expr $left + $right))
 
   # start with a newline
-  # echo ""
+  echo ""
 
   # print label
   echo -n $label
@@ -89,58 +89,22 @@ print_process_start() {
   counter=$middle
   until [ $counter = 0 ]; do
     let counter-=1
-    echo -n ":"
+    echo -n "-"
   done
 
   # print the right column
-  echo -n " =>"
+  echo -n ">"
 
-  # end with two newlines
+  # end with a
   echo ""
-  # echo ""
 }
 
-# print_process_end(1)
+# print_process_end()
 # 
-# $1 = label
-# 
-# Print a header indicating the end of a process.
-# 
-# Example:
-# 
-# print_process_end "build output"
-# 
-# would produce:
-# <= ::::::::::::::::::::::::::::::::::::::::::::::::: END BUILD OUTPUT
+# Creates a hard delineation after a process
 print_process_end() {
-  label=$(upcase "end $1")
-  max_length=70
-  left=3
-  right=$(expr ${#label} + 1)
-  middle=$(expr $max_length - $(expr $left + $right))
-
-  # start with a newline
-  # echo ""
-
-  # print the left column
-  echo -n "<= "
-
-  # print middle column
-  counter=$middle
-  until [ $counter = 0 ]; do
-    let counter-=1
-    echo -n ":"
-  done
-
-  # print a space
-  echo -n " "
-
-  # print label
-  echo -n $label
-
-  # end with two newlines
+  # end with a newline
   echo ""
-  # echo ""
 }
 
 # print_subtask_start(1)
@@ -154,18 +118,32 @@ print_process_end() {
 # print_subtask_start "after build hook 1"
 # 
 # would produce:
-# ::::::::: AFTER BUILD HOOK 1
+# AFTER BUILD HOOK 1 -------------------->
 print_subtask_start() {
   label=$(upcase "$1")
+  max_length=40
+  left=$(expr ${#label} + 1)
+  right=1
+  middle=$(expr $max_length - $(expr $left + $right))
 
   # start with a newline
-  # echo ""
-
-  # print left column
-  echo -n "::::::::: "
+  echo ""
 
   # print label
   echo -n $label
+
+  # print a space
+  echo -n " "
+
+  # print middle column
+  counter=$middle
+  until [ $counter = 0 ]; do
+    let counter-=1
+    echo -n "-"
+  done
+
+  # print the right column
+  echo -n ">"
 
   # end with a newline
   echo ""
@@ -180,11 +158,11 @@ print_subtask_start() {
 # print_subtask_success
 # 
 # would produce:
-# <<<<<<<<< [√] SUCCESS
+#    [√] SUCCESS
 print_subtask_success() {
-  echo "<<<<<<<<< [√] SUCCESS"
+  echo "   [√] SUCCESS"
 
-  # end with a newline
+  # end with a double newline
   echo ""
 }
 
@@ -197,11 +175,11 @@ print_subtask_success() {
 # print_subtask_fail
 # 
 # would produce:
-# <<<<<<<<< [!] FAILED
+#    [!] FAILED
 print_subtask_fail() {
-  echo "<<<<<<<<< [!] FAILED"
+  echo "   [!] FAILED"
 
-  # end with a newline
+  # end with a double newline
   echo ""
 }
 
@@ -219,6 +197,38 @@ print_subtask_fail() {
 # +> Language Detected : Ruby
 print_bullet() {
   echo "+> $1"
+}
+
+# print_bullet_info(1)
+# 
+# $1 = message
+# 
+# Print a line item as followup info to a bullet point
+# 
+# Example:
+# 
+# print_bullet_info "Language Detected : Ruby"
+# 
+# would produce:
+#    Language Detected : Ruby
+print_bullet_info() {
+  echo "   $1"
+}
+
+# print_bullet_sub(1)
+# 
+# $1 = message
+# 
+# Print a line item as a sub or followup item to a bullet point
+# 
+# Example:
+# 
+# print_bullet_sub "Language Detected : Ruby"
+# 
+# would produce:
+#    - Language Detected : Ruby
+print_bullet_sub() {
+  echo "   - $1"
 }
 
 # print_warning(1)
