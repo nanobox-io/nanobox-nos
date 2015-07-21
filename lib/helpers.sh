@@ -7,7 +7,7 @@
 #
 # A simple expressive shortcut to install a pkgsrc package via pkgin
 install() {
-  run_process "installing ${1}" "pkgin -y in $1"
+  run_subprocess "installing ${1}" "pkgin -y in $1"
 }
 
 # run_process(2)
