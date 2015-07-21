@@ -2,19 +2,19 @@
 # vim: ts=2 sw=2 ft=bash noet
 
 # install(1)
-# 
+#
 # $1 = package name
-# 
+#
 # A simple expressive shortcut to install a pkgsrc package via pkgin
 install() {
   run_process "installing ${1}" "pkgin -y in $1"
 }
 
 # run_process(2)
-# 
+#
 # $1 = process label
 # $2 = command
-# 
+#
 # A helper to run a process and format the output according to the styleguide
 run_process() {
   print_process_start "${1}"
@@ -23,13 +23,13 @@ run_process() {
 }
 
 # run_subprocess(2)
-# 
+#
 # $1 = process label
 # $2 = command
-# 
+#
 # # A helper to run a subprocess and format the output according to the styleguide
 run_subprocess() {
-  print_subprocess_start "${1}"
+  print_subtask_start "${1}"
   echo "   $ ${2}"
   $2 2>&1 | grep '\S' | sed -e 's/\r//g;s/^/   /'
   if [ $? -eq 0 ]; then
@@ -40,9 +40,9 @@ run_subprocess() {
 }
 
 # validate_presence(1)
-# 
+#
 # $1 = field
-# 
+#
 # Validate that a field exists within the boxfile payload and has a value.
 # If the check fails, a fatal error will be printed an a non-zero exit
 # will be forced.
@@ -55,10 +55,10 @@ validate_presence() {
 }
 
 # validate_in(2)
-# 
+#
 # $1 = field
 # $2 = possible values
-# 
+#
 # Validates that if a field exists, the value present falls within a range
 # of acceptable options.
 validate_in() {
@@ -91,10 +91,10 @@ validate_in() {
 }
 
 # validate_not_in(2)
-# 
+#
 # $1 = field
 # $2 = possible values
-# 
+#
 # Validates that if a field exists, the value present falls does not fall
 # within a range of options.
 validate_not_in() {
