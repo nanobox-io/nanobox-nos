@@ -4,13 +4,13 @@
 # print_header(1)
 #
 # $1 = label
-# 
+#
 # Print a header, formatted to 70 characters, with the label
-# 
+#
 # Example:
-# 
+#
 # print_header "headline here"
-# 
+#
 # would produce:
 # ::::::::::::::::::::::::::: HEADLINE HERE :::::::::::::::::::::::::::
 print_header() {
@@ -32,7 +32,7 @@ print_header() {
   # print the left column
   counter=$left
   until [ $counter = 0 ]; do
-    let counter-=1
+    let counter--
     echo -n ":"
   done
 
@@ -48,7 +48,7 @@ print_header() {
   # print the right column
   counter=$right
   until [ $counter = 0 ]; do
-    let counter-=1
+    let counter--
     echo -n ":"
   done
 
@@ -58,15 +58,15 @@ print_header() {
 }
 
 # print_process_start(1)
-# 
+#
 # $1 = label
-# 
+#
 # Print a header indicating the start of a process.
-# 
+#
 # Example:
-# 
+#
 # print_process_start "installing ruby-2.2"
-# 
+#
 # would produce:
 # INSTALLING RUBY-2.2 ------------------------------------------------>
 print_process_start() {
@@ -88,7 +88,7 @@ print_process_start() {
   # print middle column
   counter=$middle
   until [ $counter = 0 ]; do
-    let counter-=1
+    let counter--
     echo -n "-"
   done
 
@@ -100,7 +100,7 @@ print_process_start() {
 }
 
 # print_process_end()
-# 
+#
 # Creates a hard delineation after a process
 print_process_end() {
   # end with a newline
@@ -108,15 +108,15 @@ print_process_end() {
 }
 
 # print_subtask_start(1)
-# 
+#
 # $1 = label
-# 
+#
 # Print a header indicating the start of a sub task
-# 
+#
 # Example:
-# 
+#
 # print_subtask_start "after build hook 1"
-# 
+#
 # would produce:
 # AFTER BUILD HOOK 1 -------------------->
 print_subtask_start() {
@@ -138,7 +138,7 @@ print_subtask_start() {
   # print middle column
   counter=$middle
   until [ $counter = 0 ]; do
-    let counter-=1
+    let counter--
     echo -n "-"
   done
 
@@ -150,13 +150,13 @@ print_subtask_start() {
 }
 
 # print_subtask_success(0)
-# 
+#
 # Print a footer indicating a successful sub task
-# 
+#
 # Example:
-# 
+#
 # print_subtask_success
-# 
+#
 # would produce:
 #    [√] SUCCESS
 print_subtask_success() {
@@ -167,13 +167,13 @@ print_subtask_success() {
 }
 
 # print_subtask_fail(0)
-# 
+#
 # Print a footer indicating a failed sub task
-# 
+#
 # Example:
-# 
+#
 # print_subtask_fail
-# 
+#
 # would produce:
 #    [!] FAILED
 print_subtask_fail() {
@@ -184,15 +184,15 @@ print_subtask_fail() {
 }
 
 # print_bullet(1)
-# 
+#
 # $1 = message
-# 
+#
 # Print a line item in the form of a bullet point
-# 
+#
 # Example:
-# 
+#
 # print_bullet "Language Detected : Ruby"
-# 
+#
 # would produce:
 # +> Language Detected : Ruby
 print_bullet() {
@@ -200,15 +200,15 @@ print_bullet() {
 }
 
 # print_bullet_info(1)
-# 
+#
 # $1 = message
-# 
+#
 # Print a line item as followup info to a bullet point
-# 
+#
 # Example:
-# 
+#
 # print_bullet_info "Language Detected : Ruby"
-# 
+#
 # would produce:
 #    Language Detected : Ruby
 print_bullet_info() {
@@ -216,15 +216,15 @@ print_bullet_info() {
 }
 
 # print_bullet_sub(1)
-# 
+#
 # $1 = message
-# 
+#
 # Print a line item as a sub or followup item to a bullet point
-# 
+#
 # Example:
-# 
+#
 # print_bullet_sub "Language Detected : Ruby"
-# 
+#
 # would produce:
 #    - Language Detected : Ruby
 print_bullet_sub() {
@@ -232,15 +232,15 @@ print_bullet_sub() {
 }
 
 # print_warning(1)
-# 
+#
 # $1 = message
-# 
+#
 # Print a warning message, formatted to a 70 character block paragraph
-# 
+#
 # Example:
-# 
+#
 # print_warning "We've detected you may be using... (abbreviated for clarity)"
-# 
+#
 # would produce:
 # -----------------------------  WARNING  -----------------------------
 # We've detected you may be using sessions in a way that could cause
@@ -257,17 +257,17 @@ print_warning() {
 }
 
 # print_fatal(2)
-# 
+#
 # $1 = title
 # $2 = message
-# 
+#
 # Example:
-# 
+#
 # print_fatal "deploy stream disconnected", "Oh snap... (abbreviated for clarity)"
-# 
+#
 # would produce:
 # ! DEPLOY STREAM DISCONNECTED !
-# 
+#
 # Oh snap the deploy stream just disconnected. No worries, you can
 # visit the dashboard to view the complete output stream.
 print_fatal() {
@@ -286,15 +286,15 @@ print_fatal() {
 }
 
 # print_block(1)
-# 
+#
 # $1 = message
-# 
+#
 # Print a message formatted as a block of text, wrapped at 70 characters
-# 
+#
 # Example:
-# 
+#
 # print_block "We've detected you may be using... (abbreviated for clarity)"
-# 
+#
 # would produce:
 # We've detected you may be using sessions in a way that could cause
 # unexpected behavior. Feel free to review the following guide for
@@ -346,15 +346,15 @@ print_block() {
 }
 
 # upcase(1)
-# 
+#
 # $1 = string
-# 
+#
 # Uppercase a string
-# 
+#
 # Example:
-# 
+#
 # upcase "hello world"
-# 
+#
 # would produce:
 # HELLO WORLD
 upcase() {
