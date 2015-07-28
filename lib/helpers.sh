@@ -18,7 +18,7 @@ install() {
 # A helper to run a process and format the output according to the styleguide
 run_process() {
   print_process_start "${1}"
-  $2 2>&1 | grep '\S' | sed -e 's/\r//g;s/^/   /'
+  $2 2>&1 | grep '\S' | sed -e 's/\r//g;s/^/   /' || true
   print_process_end
 }
 
@@ -31,8 +31,8 @@ run_process() {
 run_subprocess() {
   print_subtask_start "${1}"
   echo "   $ ${2}"
-  $2 2>&1 | grep '\S' | sed -e 's/\r//g;s/^/   /'
-  if [ $? -eq 0 ]; then
+  ($2 2>&1; res=$?) | grep '\S' | sed -e 's/\r//g;s/^/   /' || true
+  if [ $res -eq 0 ]; then
     print_subtask_success
   else
     print_subtask_fail
