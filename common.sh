@@ -10,7 +10,7 @@ NOS_lib_dir=""
 
 # include components
 lib_dir="$(dirname $BASH_SOURCE)/lib"
-components=( evars hooks payload output helpers render)
+components=( evars output payload pkgsrc render run validate )
 for component in "${components[@]}"
 do
   . ${lib_dir}/${component}.sh

@@ -1,6 +1,36 @@
 # -*- mode: bash; tab-width: 2; -*-
 # vim: ts=2 sw=2 ft=bash noet
 
+# run_process(2)
+#
+# $1 = process label
+# $2 = command
+#
+# A helper to run a process and format the output according to the styleguide
+run_process() {
+  print_process_start "${1}"
+  $2 2>&1 | (grep '\S' || echo "") | sed -e 's/\r//g;s/^/   /'
+  print_process_end
+}
+
+# run_subprocess(2)
+#
+# $1 = process label
+# $2 = command
+#
+# # A helper to run a subprocess and format the output according to the styleguide
+run_subprocess() {
+  print_subtask_start "${1}"
+  echo "   $ ${2}"
+  res=0
+  ($2 2>&1; res=$?) | (grep '\S' || echo "") | sed -e 's/\r//g;s/^/   /'
+  if [ $res -eq 0 ]; then
+    print_subtask_success
+  else
+    print_subtask_fail
+  fi
+}
+
 # run_hooks(1)
 # 
 # Iterate through commands in the Boxfile and run them.
