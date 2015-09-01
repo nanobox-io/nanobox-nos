@@ -19,7 +19,7 @@ To use Nos, simply source the common.sh script and initialize the framework.
 nos_init $@
 ```
 
-For an overview of how and when to use Nos, please refer to the [Nanobox Common Tasks](docs.nanobox.io/engines/common-tasks/) guide.
+For an overview of how and when to use Nos, please refer to the [Nanobox Common Tasks](http://docs.nanobox.io/engines/common-tasks/) guide.
 
 ## API
 
