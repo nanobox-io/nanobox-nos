@@ -19,13 +19,45 @@ To use Nos, simply source the common.sh script and initialize the framework.
 nos_init $@
 ```
 
+For an overview of how and when to use Nos, please refer to the [Nanobox Common Tasks](docs.nanobox.io/engines/common-tasks/) guide.
+
 ## API
 
-- [Payload](#Payload)
-    - [payload](#payload(1))
-- [Validation](#Validation)
-    - [validate_presence](#validate_presence(1))
-
+- [Payload](#payload)
+    - [payload](#payload1)
+- [Validation](#validation)
+    - [validate_presence](#validate_presence1)
+    - [validate_in](#validate_in2)
+    - [validate_not_in](#validate_not_in2)
+- [Printing Output](#printing-output)
+    - [print_header](#print_header1)
+    - [print_process_start](#print_process_start1)
+    - [print_process_end](#print_process_end)
+    - [print_subtask_start](#print_subtask_start1)
+    - [print_subtask_success](#print_subtask_success0)
+    - [print_subtask_fail](#print_subtask_fail0)
+    - [print_bullet](#print_bullet1)
+    - [print_bullet_info](#print_bullet_info1)
+    - [print_bullet_sub](#print_bullet_sub1)
+    - [print_warning](#print_warning1)
+    - [print_fatal](#print_fatal2)
+    - [print_block](#print_block1)
+- [Installing Packages](#installing-packages)
+    - [install](#install1)
+- [Running Commands](#running-commands)
+    - [run_process](#run_process2)
+    - [run_subprocess](#run_subprocess2)
+- [Environment Variables](#environment-variables)
+    - [set_evar](#set_evar2)
+    - [persist_evar](#persist_evar2)
+    - [set_evars](#set_evars0)
+    - [persist_evars](#persist_evars0)
+    - [set_evars_whitelist](#set_evars_whitelist1)
+    - [persist_evars_whitelist](#persist_evars_whitelist1)
+    - [set_evars_blacklist](#set_evars_blacklist1)
+    - [persist_evars_blacklist](#persist_evars_blacklist1)
+- Running Hooks
+    - [run_hooks](#run_hooks1)
 
 #### Payload
 
