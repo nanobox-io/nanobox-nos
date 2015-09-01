@@ -56,7 +56,7 @@ For an overview of how and when to use Nos, please refer to the [Nanobox Common 
     - [persist_evars_whitelist](#persist_evars_whitelist1)
     - [set_evars_blacklist](#set_evars_blacklist1)
     - [persist_evars_blacklist](#persist_evars_blacklist1)
-- Running Hooks
+- [Running Hooks](#running-hooks)
     - [run_hooks](#run_hooks1)
 
 #### Payload
