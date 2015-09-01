@@ -1,4 +1,4 @@
-# nanobox-nos
+# Nos
 A bash library and framework to expedite Nanobox engine development.
 
 ## Installation
@@ -20,6 +20,12 @@ nos_init $@
 ```
 
 ## API
+
+- [Payload](#Payload)
+    - [payload](#payload(1))
+- [Validation](#Validation)
+    - [validate_presence](#validate_presence(1))
+
 
 #### Payload
 
