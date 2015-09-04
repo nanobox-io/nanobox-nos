@@ -43,7 +43,7 @@ payload() {
       done
       var="PL_${1}_value"
       val=${!var}
-      >&2 echo "$val"
+      >&2 echo "PL_${1}_value=${val[@]}"
       echo "PL_${1}_value"
       ;;
     * )
