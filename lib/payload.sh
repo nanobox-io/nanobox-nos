@@ -17,38 +17,36 @@ eval_payload() {
 payload() {
   type="PL_${1}_type"
 
-  case "${!type}" in
-    "map" )
-      eval "PL_${1}_value=()"
-      nodes_var="PL_${1}_nodes"
-      list=${!nodes_var}
-      nodes=(${list}//,/ })
-      for node in "${nodes[@]}"; do
-        node_var="PL_${1}_${node}_value"
-        key=node
-        val=${!node_var}
-        eval "PL_${1}_value+=(\"${key}=${val}\")"
-      done
-      echo "PL_${1}_value"
-      ;;
-    "array" )
-      >&2 echo "setting: PL_${1}_value=()"
-      eval "PL_${1}_value=()"
-      len_var="PL_${1}_length"
-      length=${!len_var}
-      for (( i=0; i < $length; i++ ))
-      do
-        val="PL_${1}_${i}_value"
-        eval "PL_${1}_value+=(\"${!val}\")"
-      done
-      var="PL_${1}_value"
-      val=${!var}
-      >&2 echo "PL_${1}_value=${val[@]}"
-      echo "PL_${1}_value"
-      ;;
-    * )
-      val="PL_${1}_value"
-      echo "${!val}"      
-      ;;
-  esac
+  if [[ "$type" = "map" ]]; then
+    eval "PL_${1}_value=()"
+    nodes_var="PL_${1}_nodes"
+    list=${!nodes_var}
+    nodes=(${list}//,/ })
+    for node in "${nodes[@]}"; do
+      node_var="PL_${1}_${node}_value"
+      key=node
+      val=${!node_var}
+      eval "PL_${1}_value+=(\"${key}=${val}\")"
+    done
+    echo "PL_${1}_value"
+
+  elif [[ "$type" = "array" ]]; then
+    >&2 echo "setting: PL_${1}_value=()"
+    eval "PL_${1}_value=()"
+    len_var="PL_${1}_length"
+    length=${!len_var}
+    for (( i=0; i < $length; i++ ))
+    do
+      val="PL_${1}_${i}_value"
+      eval "PL_${1}_value+=(\"${!val}\")"
+    done
+    var="PL_${1}_value"
+    val=${!var}
+    >&2 echo "PL_${1}_value=${val[@]}"
+    echo "PL_${1}_value"
+
+  else
+    val="PL_${1}_value"
+    echo "${!val}"  
+  fi
 }
