@@ -26,5 +26,5 @@ install_build() {
 # 
 # Uninstall all of the packages that were installed with "install_build"
 install_cleanup() {
-  
+  echo "Not implemented"
 }
