@@ -32,6 +32,7 @@ payload() {
       echo "PL_${1}_value"
       ;;
     "array" )
+      >&2 echo "setting: PL_${1}_value=()"
       eval "PL_${1}_value=()"
       len_var="PL_${1}_length"
       length=${!len_var}
@@ -40,6 +41,9 @@ payload() {
         val="PL_${1}_${i}_value"
         eval "PL_${1}_value+=(\"${!val}\")"
       done
+      var="PL_${1}_value"
+      val=${!var}
+      >&2 echo "$val"
       echo "PL_${1}_value"
       ;;
     * )
