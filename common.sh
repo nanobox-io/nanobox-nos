@@ -2,11 +2,11 @@
 # vim: ts=2 sw=2 ft=bash noet
 
 # initialize globals, to be set during nos_init
-NOS_bin_script=""
-NOS_engine_root=""
-NOS_template_dir=""
-NOS_file_dir=""
-NOS_lib_dir=""
+engine_root=""
+engine_bin_script_dir=""
+engine_template_dir=""
+engine_file_dir=""
+engine_lib_dir=""
 
 # include components
 lib_dir="$(dirname $BASH_SOURCE)/lib"
@@ -27,11 +27,11 @@ nos_init() {
   current_dir=$(pwd)
 
   # initialize globals
-  NOS_bin_script="${current_dir}/$(basename $0)"
-  NOS_engine_root="${current_dir}/../"
-  NOS_template_dir="${current_dir}/../templates"
-  NOS_file_dir="${current_dir}/../files"
-  NOS_lib_dir="${current_dir}/../lib"
+  engine_root="${current_dir}/../"
+  engine_bin_script_dir="${current_dir}/$(basename $0)"
+  engine_template_dir="${current_dir}/../templates"
+  engine_file_dir="${current_dir}/../files"
+  engine_lib_dir="${current_dir}/../lib"
 
   # initialize payload
   eval_payload $1
