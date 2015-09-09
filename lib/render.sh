@@ -10,7 +10,11 @@
 # Renders a mustache template from the templates directory and persists the
 # result at (destination). The payload provided is passed to mustache.
 template() {
-  echo "${3}" | mustache - ${NOS_template_dir}/${1} > $2
+  if [[ "$2" = "-" ]]; then
+    echo "${3}" | mustache - ${NOS_template_dir}/${1}
+  else
+    echo "${3}" | mustache - ${NOS_template_dir}/${1} > $2
+  fi
 }
 
 # file(2)
