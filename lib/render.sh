@@ -11,9 +11,9 @@
 # result at (destination). The payload provided is passed to mustache.
 template() {
   if [[ "$2" = "-" ]]; then
-    echo "${3}" | mustache - ${NOS_template_dir}/${1}
+    echo "${3}" | mustache - ${engine_template_dir}/${1}
   else
-    echo "${3}" | mustache - ${NOS_template_dir}/${1} > $2
+    echo "${3}" | mustache - ${engine_template_dir}/${1} > $2
   fi
 }
 
@@ -24,5 +24,5 @@ template() {
 #
 # Copies a file from the files directory to the specified destination.
 file() {
-  cp -f ${NOS_file_dir}/${1} $2
+  cp -f ${engine_file_dir}/${1} $2
 }
