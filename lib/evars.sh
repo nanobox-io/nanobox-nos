@@ -41,7 +41,7 @@ set_evars() {
 persist_evars() {
   evars=(${PL_env_nodes//,/ })
   for evar in "${evars[@]}"; do
-    echo $evar | grep -E $1 && persist_evar $evar $(payload "env_${evar}")
+    echo $evar | persist_evar $evar $(payload "env_${evar}")
   done
 }
 
