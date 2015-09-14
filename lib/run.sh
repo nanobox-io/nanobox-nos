@@ -9,7 +9,7 @@
 # A helper to run a process and format the output according to the styleguide
 run_process() {
   print_process_start "${1}"
-  $2 2>&1 | (grep '\S' || echo "") | sed -e 's/\r//g;s/^/   /'
+  $2 1>&2 | (grep '\S' || echo "") | sed -e 's/\r//g;s/^/   /'
   print_process_end
 }
 
@@ -23,7 +23,7 @@ run_subprocess() {
   print_subtask_start "${1}"
   echo "   $ ${2}"
   res=0
-  ($2 2>&1; res=$?) | (grep '\S' || echo "") | sed -e 's/\r//g;s/^/   /'
+  ($2 1>&2; res=$?) | (grep '\S' || echo "") | sed -e 's/\r//g;s/^/   /'
   if [ $res -eq 0 ]; then
     print_subtask_success
   else

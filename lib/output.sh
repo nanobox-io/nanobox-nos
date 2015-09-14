@@ -27,34 +27,34 @@ print_header() {
   fi
 
   # start with a newline
-  # echo ""
+  # >&2 echo ""
 
   # print the left column
   counter=$left
   until [ $counter = 0 ]; do
     let counter--
-    echo -n ":"
+    >&2 echo -n ":"
   done
 
   # print a space
-  echo -n " "
+  >&2 echo -n " "
 
   # print the label
-  echo -n $label
+  >&2 echo -n $label
 
   # print a space
-  echo -n " "
+  >&2 echo -n " "
 
   # print the right column
   counter=$right
   until [ $counter = 0 ]; do
     let counter--
-    echo -n ":"
+    >&2 echo -n ":"
   done
 
   # end with two newlines
-  echo ""
-  # echo ""
+  >&2 echo ""
+  # >&2 echo ""
 }
 
 # print_process_start(1)
@@ -77,26 +77,26 @@ print_process_start() {
   middle=$(expr $max_length - $(expr $left + $right))
 
   # start with a newline
-  echo ""
+  >&2 echo ""
 
   # print label
-  echo -n $label
+  >&2 echo -n $label
 
   # print a space
-  echo -n " "
+  >&2 echo -n " "
 
   # print middle column
   counter=$middle
   until [ $counter = 0 ]; do
     let counter--
-    echo -n "-"
+    >&2 echo -n "-"
   done
 
   # print the right column
-  echo -n ">"
+  >&2 echo -n ">"
 
   # end with a
-  echo ""
+  >&2 echo ""
 }
 
 # print_process_end()
@@ -104,7 +104,7 @@ print_process_start() {
 # Creates a hard delineation after a process
 print_process_end() {
   # end with a newline
-  echo ""
+  >&2 echo ""
 }
 
 # print_subtask_start(1)
@@ -127,26 +127,26 @@ print_subtask_start() {
   middle=$(expr $max_length - $(expr $left + $right))
 
   # start with a newline
-  echo ""
+  >&2 echo ""
 
   # print label
-  echo -n $label
+  >&2 echo -n $label
 
   # print a space
-  echo -n " "
+  >&2 echo -n " "
 
   # print middle column
   counter=$middle
   until [ $counter = 0 ]; do
     let counter--
-    echo -n "-"
+    >&2 echo -n "-"
   done
 
   # print the right column
-  echo -n ">"
+  >&2 echo -n ">"
 
   # end with a newline
-  echo ""
+  >&2 echo ""
 }
 
 # print_subtask_success(0)
@@ -160,10 +160,10 @@ print_subtask_start() {
 # would produce:
 #    [√] SUCCESS
 print_subtask_success() {
-  echo "   [√] SUCCESS"
+  >&2 echo "   [√] SUCCESS"
 
   # end with a double newline
-  echo ""
+  >&2 echo ""
 }
 
 # print_subtask_fail(0)
@@ -177,10 +177,10 @@ print_subtask_success() {
 # would produce:
 #    [!] FAILED
 print_subtask_fail() {
-  echo "   [!] FAILED"
+  >&2 echo "   [!] FAILED"
 
   # end with a double newline
-  echo ""
+  >&2 echo ""
 }
 
 # print_bullet(1)
@@ -196,7 +196,7 @@ print_subtask_fail() {
 # would produce:
 # +> Language Detected : Ruby
 print_bullet() {
-  echo "+> $1"
+  >&2 echo "+> $1"
 }
 
 # print_bullet_info(1)
@@ -212,7 +212,7 @@ print_bullet() {
 # would produce:
 #    Language Detected : Ruby
 print_bullet_info() {
-  echo "   $1"
+  >&2 echo "   $1"
 }
 
 # print_bullet_sub(1)
@@ -228,7 +228,7 @@ print_bullet_info() {
 # would produce:
 #    - Language Detected : Ruby
 print_bullet_sub() {
-  echo "   - $1"
+  >&2 echo "   - $1"
 }
 
 # print_warning(1)
@@ -248,10 +248,10 @@ print_bullet_sub() {
 # more information : bit.ly/2sA9b
 print_warning() {
   # start with a newline
-  # echo ""
+  # >&2 echo ""
 
   # print header
-  echo "-----------------------------  WARNING  -----------------------------"
+  >&2 echo "-----------------------------  WARNING  -----------------------------"
 
   print_block "$1"
 }
@@ -273,13 +273,13 @@ print_warning() {
 print_fatal() {
   label=$(upcase "$1")
   # start with a newline
-  # echo ""
+  # >&2 echo ""
 
   # print header
-  echo "! ${label} !"
+  >&2 echo "! ${label} !"
 
   # print a spacer
-  echo ""
+  >&2 echo ""
 
   # print message
   print_block "$2"
@@ -317,20 +317,20 @@ print_block() {
     if [ "$char" = " " ]; then
       if [ $j -ge $max_line_len ]; then
         # terminate the current line
-        echo ""
-        echo -n "${word} "
+        >&2 echo ""
+        >&2 echo -n "${word} "
         j=$(expr ${#word} + 1)
         word=""
       else
-        echo -n "${word} "
+        >&2 echo -n "${word} "
         word=""
       fi
     elif [ $i = $last ]; then
       if [ $j -ge $max_line_len ]; then
         # terminate the current line
-        echo ""
+        >&2 echo ""
       fi
-      echo $word
+      >&2 echo $word
     else
       word="${word}${char}"
     fi
@@ -342,7 +342,7 @@ print_block() {
   done
 
   # print an extra newline
-  # echo ""
+  # >&2 echo ""
 }
 
 # upcase(1)
@@ -358,5 +358,5 @@ print_block() {
 # would produce:
 # HELLO WORLD
 upcase() {
-  echo $1 | tr [a-z] [A-Z]
+  >&2 echo $1 | tr [a-z] [A-Z]
 }
