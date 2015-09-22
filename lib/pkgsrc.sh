@@ -23,7 +23,7 @@ install() {
 # A simple expressive shortcut to install a pkgsrc package via pkgin,
 # verbosely displaying output
 install_verbose() {
-  run_subprocess "installing $(package_label "$@")" "pkgin -y in $@" 
+  run_subprocess "Installing $(package_label "$@")" "pkgin -y in $@" 
 }
 
 # install_build(1)
@@ -35,7 +35,7 @@ install_verbose() {
 install_build() {
   mkdir -p /var/db/nos
   echo $1 >> /var/db/nos/build.db
-  run_subprocess "installing ${1}" "pkgin -y in $1"
+  run_subprocess "Installing ${1}" "pkgin -y in $1"
 }
 
 # install_cleanup(0)
