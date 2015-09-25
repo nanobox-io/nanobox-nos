@@ -7,7 +7,7 @@
 #
 # A simple expressive shortcut to install a pkgsrc package via pkgin
 install() {
-  print_bullet "installing $(package_label "$@")..."
+  print_bullet "Installing $(package_label "$@")..."
   res=$(pkgin -y in "$@")
 
   if [[ ! "$?" = "0" ]]; then
