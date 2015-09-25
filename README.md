@@ -44,6 +44,7 @@ For an overview of how and when to use Nos, please refer to the [Nanobox Common 
     - [print_block](#print_block1)
 - [Installing Packages](#installing-packages)
     - [install](#install1)
+    - [install_verbose](#install_verbose1)
 - [Running Commands](#running-commands)
     - [run_process](#run_process2)
     - [run_subprocess](#run_subprocess2)
@@ -58,6 +59,9 @@ For an overview of how and when to use Nos, please refer to the [Nanobox Common 
     - [persist_evars_blacklist](#persist_evars_blacklist1)
 - [Running Hooks](#running-hooks)
     - [run_hooks](#run_hooks1)
+- [Templates](#templates)
+    - [template](#template1)
+    - [file](#file1)
 
 #### Payload
 
@@ -253,6 +257,13 @@ For an overview of how and when to use Nos, please refer to the [Nanobox Common 
     
     A simple expressive shortcut to install a pkgsrc package via pkgin
     
+##### install_verbose(1)
+    
+    $1 = package name
+    
+    A simple expressive shortcut to install a pkgsrc package via pkgin,
+    with verbose output
+
 #### Running Commands
 
 ##### run_process(2)
@@ -346,3 +357,20 @@ For an overview of how and when to use Nos, please refer to the [Nanobox Common 
       1) run_hooks "before"
       2) run_hooks "after"
       
+#### Templates
+
+##### template(3)
+    
+    $1 = source
+    $2 = destination
+    $3 = JSON|YAML payload
+    
+    Renders a mustache template from the templates directory and persists the
+    result at (destination). The payload provided is passed to mustache.
+
+##### template_file(2)
+    
+    $1 = source
+    $2 = destination
+    
+    Copies a file from the files directory to the specified destination.

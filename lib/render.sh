@@ -17,12 +17,12 @@ template() {
   fi
 }
 
-# file(2)
+# template_file(2)
 #
 # $1 = source
 # $2 = destination
 #
 # Copies a file from the files directory to the specified destination.
-file() {
+template_file() {
   cp -f ${engine_file_dir}/${1} $2
 }
