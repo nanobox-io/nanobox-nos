@@ -22,9 +22,8 @@ run_process() {
 run_subprocess() {
   print_subtask_start "${1}"
   echo "   $ ${2}"
-  res=0
-  ($2 2>&1; res=$?) | (grep '\S' || echo "") | sed -e 's/\r//g;s/^/   /'
-  if [ $res -eq 0 ]; then
+  ($2 2>&1) | (grep '\S' || echo "") | sed -e 's/\r//g;s/^/   /'
+  if [ ${PIPESTATUS[0]} -eq 0 ]; then
     print_subtask_success
   else
     print_subtask_fail
