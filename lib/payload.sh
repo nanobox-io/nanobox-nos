@@ -20,14 +20,14 @@ payload() {
 
   if [[ "$type" = "array" ]]; then
     list=()
-    for (( i=0; i < $length; i++ ))
-    do
+    length="PL_${1}_length"
+    for (( i=0; $i < $length; i++ )); do
       val="PL_${1}_${i}_value"
       list+=("${!val}")
-    done    
+    done
     echo "${list[@]}"
   else
     val="PL_${1}_value"
-    echo "${!val}"  
+    echo "${!val}"
   fi
 }
