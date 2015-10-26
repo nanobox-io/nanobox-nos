@@ -15,7 +15,8 @@ eval_payload() {
 # 
 # A simple getter for fetching a payload value
 payload() {
-  type="PL_${1}_type"
+  key="PL_${1}_type"
+  type=${!key}
 
   if [[ "$type" = "array" ]]; then
     list=()
