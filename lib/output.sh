@@ -14,6 +14,10 @@
 # would produce:
 # ::::::::::::::::::::::::::: HEADLINE HERE :::::::::::::::::::::::::::
 print_header() {
+  >&2 echo "$(_print_header "$1")"
+}
+
+_print_header() {
   label=$(upcase "$1")
   max_length=70
   middle=$(expr ${#label} + 2)
@@ -70,6 +74,10 @@ print_header() {
 # would produce:
 # INSTALLING RUBY-2.2 ------------------------------------------------>
 print_process_start() {
+  >&2 echo "$(_print_process_start "$1")"
+}
+
+_print_process_start() {
   label=$(upcase "$1")
   max_length=70
   left=$(expr ${#label} + 1)
@@ -103,6 +111,10 @@ print_process_start() {
 #
 # Creates a hard delineation after a process
 print_process_end() {
+  >&2 echo "$(_print_process_end)"
+}
+
+_print_process_end() {
   # end with a newline
   echo ""
 }
@@ -120,6 +132,10 @@ print_process_end() {
 # would produce:
 # AFTER BUILD HOOK 1 -------------------->
 print_subtask_start() {
+  >&2 echo "$(_print_subtask_start "$1")"
+}
+
+_print_subtask_start() {
   label=$(upcase "$1")
   max_length=40
   left=$(expr ${#label} + 1)
@@ -160,6 +176,10 @@ print_subtask_start() {
 # would produce:
 #    [√] SUCCESS
 print_subtask_success() {
+  >&2 echo "$(_print_subtask_success)"
+}
+
+_print_subtask_success() {
   echo "   [√] SUCCESS"
 
   # end with a double newline
@@ -177,6 +197,10 @@ print_subtask_success() {
 # would produce:
 #    [!] FAILED
 print_subtask_fail() {
+  >&2 echo "$(_print_subtask_fail)"
+}
+
+_print_subtask_fail() {
   echo "   [!] FAILED"
 
   # end with a double newline
@@ -196,6 +220,10 @@ print_subtask_fail() {
 # would produce:
 # +> Language Detected : Ruby
 print_bullet() {
+  >&2 echo "$(_print_bullet "$1")"
+}
+
+_print_bullet() {
   echo "+> $1"
 }
 
@@ -212,6 +240,10 @@ print_bullet() {
 # would produce:
 #    Language Detected : Ruby
 print_bullet_info() {
+  >&2 echo "$(_print_bullet_info "$1")"
+}
+
+_print_bullet_info() {
   echo "   $1"
 }
 
@@ -228,6 +260,10 @@ print_bullet_info() {
 # would produce:
 #    - Language Detected : Ruby
 print_bullet_sub() {
+  >&2 echo "$(_print_bullet_sub "$1")"
+}
+
+_print_bullet_sub() {
   echo "   - $1"
 }
 
@@ -247,6 +283,10 @@ print_bullet_sub() {
 # unexpected behavior. Feel free to review the following guide for
 # more information : bit.ly/2sA9b
 print_warning() {
+  >&2 echo "$(_print_warning "$1")"
+}
+
+_print_warning() {
   # start with a newline
   # echo ""
 
@@ -271,6 +311,10 @@ print_warning() {
 # Oh snap the deploy stream just disconnected. No worries, you can
 # visit the dashboard to view the complete output stream.
 print_fatal() {
+  >&2 echo "$(_print_fatal "$1" "$2")"
+}
+
+_print_fatal() {
   label=$(upcase "$1")
   # start with a newline
   # echo ""
