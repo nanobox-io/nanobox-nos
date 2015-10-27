@@ -50,6 +50,7 @@ if [ "${play}" != "ground" ] || [ "${swing}" != "set" ] || [ -n "${apple}" ] || 
 fi
 
 # persist_evars_whitelist
+rm /tmp/vars/apple /tmp/vars/orange
 persist_evars_whitelist 'play|swing'
 if [ "$(cat /tmp/vars/play)" != "ground" ] || [ "$(cat /tmp/vars/swing)" != "set" ] || [ -a /tmp/vars/apple ] || [ -a /tmp/vars/orange ]; then
   echo "TEST ('persist_evars_whitelist') FAILED!"
