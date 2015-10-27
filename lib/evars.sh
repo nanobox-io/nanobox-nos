@@ -8,8 +8,7 @@
 #
 # Sets an environment variable in the running process
 set_evar() {
-  env_dir=$(payload 'env_dir')
-  export "${2}=${1}"
+  export "${1}=${2}"
 }
 
 # persist_evar(2)
@@ -30,7 +29,7 @@ persist_evar() {
 set_evars() {
   evars=(${PL_env_nodes//,/ })
   for evar in "${evars[@]}"; do
-    echo $evar | grep -E $1 && set_evar $evar $(payload "env_${evar}")
+    set_evar $evar $(payload "env_${evar}")
   done
 }
 
@@ -41,7 +40,7 @@ set_evars() {
 persist_evars() {
   evars=(${PL_env_nodes//,/ })
   for evar in "${evars[@]}"; do
-    echo $evar | persist_evar $evar $(payload "env_${evar}")
+    persist_evar $evar $(payload "env_${evar}")
   done
 }
 
@@ -54,7 +53,7 @@ persist_evars() {
 set_evars_whitelist() {
   evars=(${PL_env_nodes//,/ })
   for evar in "${evars[@]}"; do
-    echo $evar | grep -E $1 && set_evar $evar $(payload "env_${evar}")
+    echo $evar | grep -E "${1}" &> /dev/null && set_evar $evar $(payload "env_${evar}")
   done
 }
 
@@ -67,7 +66,7 @@ set_evars_whitelist() {
 persist_evars_whitelist() {
   evars=(${PL_env_nodes//,/ })
   for evar in "${evars[@]}"; do
-    echo $evar | grep -E $1 && persist_evar $evar $(payload "env_${evar}")
+    echo $evar | grep -E "${1}" &> /dev/null && persist_evar $evar $(payload "env_${evar}")
   done
 }
 
@@ -80,7 +79,7 @@ persist_evars_whitelist() {
 set_evars_blacklist() {
   evars=(${PL_env_nodes//,/ })
   for evar in "${evars[@]}"; do
-    echo $evar | grep -E $1 || set_evar $evar $(payload "env_${evar}")
+    echo $evar | grep -E "${1}" &> /dev/null || set_evar $evar $(payload "env_${evar}")
   done
 }
 
@@ -93,6 +92,6 @@ set_evars_blacklist() {
 persist_evars_blacklist() {
   evars=(${PL_env_nodes//,/ })
   for evar in "${evars[@]}"; do
-    echo $evar | grep -E $1 || persist_evar $evar $(payload "env_${evar}")
+    echo $evar | grep -E "${1}" &> /dev/null || persist_evar $evar $(payload "env_${evar}")
   done
 }

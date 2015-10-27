@@ -58,9 +58,10 @@ run_hooks() {
       (cd $PL_code_dir_value; run_subprocess "${1/_/ }" "${!cmd}")
       ;;
     "array" )
-      for index in $(seq $PL_boxfile_${1}_exec_length); do
+      length=PL_boxfile_${1}_exec_length
+      for (( index=0; $index < $length; index++ )); do
         cmd_type="PL_boxfile_${1}_exec_${index}_type"
-        if [ "${!cmd_type}" = "string"]; then
+        if [ "${!cmd_type}" = "string" ]; then
           cmd="PL_boxfile_${1}_exec_${index}_value"
           (cd $PL_code_dir_value; run_subprocess "${1/_/ } ${index}" "${!cmd}")
         fi

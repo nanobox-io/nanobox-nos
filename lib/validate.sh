@@ -11,7 +11,7 @@
 validate_presence() {
   if [ -z $(payload "$1") ]; then
     label=${1/boxfile_build/}
-    print_fatal "value required" "Boxfile 'build' section requires ${label} to exist and have a value to continue"
+    print_fatal "value required" "Boxfile 'build' section requires '${label}' to exist and have a value to continue"
     exit 1
   fi
 }
@@ -39,13 +39,13 @@ validate_in() {
     message_opts=""
 
     for option in $options; do
-      if [ -n $message_opts ]; then
+      if [ -n "$message_opts" ]; then
         message_opts="${message_opts}, "
       fi
       message_opts="${message_opts}${option}"
     done
 
-    message="Boxfile 'build' section attribute $label value must be one of the following: ${message_opts}"
+    message="Boxfile 'build' section attribute '$label' value must be one of the following: ${message_opts}"
 
     print_fatal "invalid value", "${message}"
     exit 1
@@ -75,13 +75,13 @@ validate_not_in() {
     message_opts=""
 
     for option in $options; do
-      if [ -n $message_opts ]; then
+      if [ -n "$message_opts" ]; then
         message_opts="${message_opts}, "
       fi
       message_opts="${message_opts}${option}"
     done
 
-    message="Boxfile 'build' section attribute $label value must not be one of the following: ${message_opts}"
+    message="Boxfile 'build' section attribute '$label' value must NOT be one of the following: ${message_opts}"
 
     print_fatal "invalid value", "${message}"
     exit 1

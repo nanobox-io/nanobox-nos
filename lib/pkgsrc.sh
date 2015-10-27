@@ -63,6 +63,9 @@ package_label() {
       # first?
       if [[ $i -eq 1 ]]; then
         label=$arg
+      # two?
+      elif [[ $i -eq $count ]] && [[ $count -eq 2 ]]; then
+        label="${label} and ${arg}"
       # last?
       elif [[ $i -eq $count ]]; then
         label="${label}, and ${arg}"

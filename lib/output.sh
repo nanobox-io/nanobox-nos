@@ -302,7 +302,6 @@ print_fatal() {
 print_block() {
   message=$1
   message_len=${#1}
-  last=$(expr $message_len - 1)
   max_line_len=70
 
   word=""
@@ -310,7 +309,7 @@ print_block() {
   j=0
 
   # start a loop that will iterate until we reach the end of the message
-  until [ $i = $message_len ]; do
+  until [ $i -gt $message_len ]; do
     # extract character
     char=${message:${i}:1}
 
@@ -325,7 +324,7 @@ print_block() {
         echo -n "${word} "
         word=""
       fi
-    elif [ $i = $last ]; then
+    elif [ $i = $message_len ]; then
       if [ $j -ge $max_line_len ]; then
         # terminate the current line
         echo ""
