@@ -2,7 +2,7 @@
 # exit on error to make sure they get resolved
 
 # get common functionality
-. ../../common.sh
+[ -z "${lib_dir}" ] && . ../../common.sh
 
 # eval_payload
 eval_payload '{"foo":"bar", "play": ["ground","school","dough"]}'

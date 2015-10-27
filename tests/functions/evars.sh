@@ -2,7 +2,7 @@
 # exit on error to make sure they get resolved
 
 # get common functionality
-. ../../common.sh
+[ -z "${lib_dir}" ] && . ../../common.sh
 
 # set_evar
 set_evar 'foo' 'bar'

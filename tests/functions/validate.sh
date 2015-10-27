@@ -2,7 +2,7 @@
 # exit on error to make sure they get resolved
 
 # get common functionality
-. ../../common.sh
+[ -z "${lib_dir}" ] && . ../../common.sh
 
 # validate_presence not found
 (validate_presence 'holy_grail' &> /dev/null) && (echo "TEST ('validate_presence missing') FAILED!"; false) || true
