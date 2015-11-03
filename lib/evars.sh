@@ -95,3 +95,18 @@ persist_evars_blacklist() {
     echo $evar | grep -E "${1}" &> /dev/null || persist_evar $evar $(payload "env_${evar}")
   done
 }
+
+# nos_environment(0)
+#
+# Returns the environment nanobox is running in.
+nos_environment() {
+  if [[ -n "$(nos_payload 'env_ENVIRONMENT')" ]]; then
+    echo "$(nos_payload 'env_ENVIRONMENT')"
+  else
+    if [[ "$(nos_payload 'platform')" = 'local' ]]; then
+      echo "development"
+    else
+      echo "production"
+    fi
+  fi
+}

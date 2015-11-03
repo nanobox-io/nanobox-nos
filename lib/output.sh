@@ -403,3 +403,17 @@ print_block() {
 upcase() {
   echo $1 | tr [a-z] [A-Z]
 }
+
+# nos_join(2+)
+#
+# $1 = delimiter
+# $2 = words
+#
+# Joins multiple word values, separated by a delimiter.
+nos_join() {
+  local IFS=$'\014'
+  delimeter=$1
+  shift
+  temp=$(echo "${*}")
+  echo ${temp//$'\014'/$delimeter}
+}

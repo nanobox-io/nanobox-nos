@@ -195,4 +195,11 @@ if [[ "${out}" != "137d45d55c99229d9ef917a09e4f6926" ]]; then
   false
 fi
 
+# nos_join
+out=$(nos_join '|' 'check sum')
+if [[ "${out}" != "check|sum" ]]; then
+  echo "TEST ('nos_join') FAILED!"
+  false
+fi
+
 echo "ALL OUTPUT TESTS PASSED!"

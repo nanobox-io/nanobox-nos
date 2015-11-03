@@ -97,4 +97,11 @@ if [ "$(cat /tmp/vars/apple)" != "apple" ] || [ "$(cat /tmp/vars/orange)" != "or
 fi
 clean_tmp_vars
 
+# nos_environment
+nos_set_evar 'platform' 'local'
+if [ "$(nos_environment)" != "development" ]; then
+  echo "TEST ('nos_environment') FAILED!"
+  false
+fi
+
 echo "ALL EVARS TESTS PASSED!"

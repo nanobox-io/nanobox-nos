@@ -87,3 +87,83 @@ validate_not_in() {
     exit 1
   fi
 }
+
+# nos_valid_integer(1)
+#
+# $1 = value
+#
+# Validates that a value is an integer.
+nos_valid_integer() {
+  [[ "$1" =~ ^[0-9]+$ ]] && return 1
+  return 0
+}
+
+# nos_valid_file(1)
+#
+# $1 = value
+#
+# Validates that a value is a file.
+nos_valid_file() {
+  [[ "$1" =~ ^\/?[^\/]+(\/[^\/]+)*$ ]] && return 1
+  return 0
+}
+
+# nos_valid_folder(1)
+#
+# $1 = value
+#
+# Validates that a value is a folder.
+nos_valid_folder() {
+  [[ "$1" =~ ^\/?[^\/]+(\/[^\/]+)*\/?$ ]] && return 1
+  return 0
+}
+
+# nos_valid_boolean(1)
+#
+# $1 = value
+#
+# Validates that a value is a boolean.
+nos_valid_boolean() {
+  [[ "$1" = 'true' ]] && return 1
+  [[ "$1" = 'false' ]] && return 1
+  [[ "$1" =~ ^[Oo]n$ ]] && return 1
+  [[ "$1" =~ ^[Oo]ff$ ]] && return 1
+  [[ $1 -eq 1 ]] && return 1
+  [[ $1 -eq 0 ]] && return 1
+  return 0
+}
+
+# nos_valid_byte(1)
+#
+# $1 = value
+#
+# Validates that a value is a byte.
+nos_valid_byte() {
+  [[ "$1" =~ ^[0-9]+[BbKkMmGgTt]?$ ]] && return 1
+  return 0
+}
+
+# nos_valid_string(1)
+#
+# $1 = value
+#
+# Validates that a value is a string.
+nos_valid_string() {
+  return 1
+}
+
+# nos_validate(3)
+#
+# $1 = value
+# $2 = type
+# $3 = default
+#
+# Validates that a value is a certain type and sets a default value if one
+# is not set.
+nos_validate() {
+  [[ -z $1 ]] && echo $3 && return
+  $(eval nos_valid_$2 $1)
+  [[ $? -eq 1 ]] && echo $1 && return
+  >&2 echo "Error: value \"$1\" is invalid $2"
+  exit 1
+}
