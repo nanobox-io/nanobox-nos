@@ -98,7 +98,7 @@ fi
 clean_tmp_vars
 
 # nos_environment
-nos_set_evar 'platform' 'local'
+nos_set_evar 'PL_platform_value' 'local'
 if [ "$(nos_environment)" != "development" ]; then
   echo "TEST ('nos_environment') FAILED!"
   false
