@@ -4,22 +4,22 @@
 # get common functionality
 [ -z "${lib_dir}" ] && . ../../common.sh
 
-# package_label
-out=$(package_label 'swings' 'slides' 'bars')
+# nos_package_label
+out=$(nos_package_label 'swings' 'slides' 'bars')
 if [[ "${out}" != "swings, slides, and bars" ]]; then
-  echo "TEST ('package_label 3') FAILED!"
+  echo "TEST ('nos_package_label 3') FAILED!"
   false
 fi
 
-out=$(package_label 'grass' 'tree')
+out=$(nos_package_label 'grass' 'tree')
 if [[ "${out}" != "grass and tree" ]]; then
-  echo "TEST ('package_label 2') FAILED!"
+  echo "TEST ('nos_package_label 2') FAILED!"
   false
 fi
 
-out=$(package_label 'deer')
+out=$(nos_package_label 'deer')
 if [[ "${out}" != "deer" ]]; then
-  echo "TEST ('package_label 1') FAILED!"
+  echo "TEST ('nos_package_label 1') FAILED!"
   false
 fi
 
