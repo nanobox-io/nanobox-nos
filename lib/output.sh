@@ -1,7 +1,7 @@
 # -*- mode: bash; tab-width: 2; -*-
 # vim: ts=2 sw=2 ft=bash noet
 
-# print_header(1)
+# nos_print_header(1)
 #
 # $1 = label
 #
@@ -9,16 +9,16 @@
 #
 # Example:
 #
-# print_header "headline here"
+# nos_print_header "headline here"
 #
 # would produce:
 # ::::::::::::::::::::::::::: HEADLINE HERE :::::::::::::::::::::::::::
-print_header() {
-  >&2 echo "$(_print_header "$1")"
+nos_print_header() {
+  >&2 echo "$(_nos_print_header "$1")"
 }
 
-_print_header() {
-  label=$(upcase "$1")
+_nos_print_header() {
+  label=$(nos_upcase "$1")
   max_length=70
   middle=$(expr ${#label} + 2)
   remainder=$(expr $max_length - $middle)
@@ -61,7 +61,7 @@ _print_header() {
   # echo ""
 }
 
-# print_process_start(1)
+# nos_print_process_start(1)
 #
 # $1 = label
 #
@@ -69,16 +69,16 @@ _print_header() {
 #
 # Example:
 #
-# print_process_start "installing ruby-2.2"
+# nos_print_process_start "installing ruby-2.2"
 #
 # would produce:
 # INSTALLING RUBY-2.2 ------------------------------------------------>
-print_process_start() {
-  >&2 echo "$(_print_process_start "$1")"
+nos_print_process_start() {
+  >&2 echo "$(_nos_print_process_start "$1")"
 }
 
-_print_process_start() {
-  label=$(upcase "$1")
+_nos_print_process_start() {
+  label=$(nos_upcase "$1")
   max_length=70
   left=$(expr ${#label} + 1)
   right=1
@@ -107,19 +107,19 @@ _print_process_start() {
   echo ""
 }
 
-# print_process_end()
+# nos_print_process_end()
 #
 # Creates a hard delineation after a process
-print_process_end() {
-  >&2 echo "$(_print_process_end)"
+nos_print_process_end() {
+  >&2 echo "$(_nos_print_process_end)"
 }
 
-_print_process_end() {
+_nos_print_process_end() {
   # end with a newline
   echo ""
 }
 
-# print_subtask_start(1)
+# nos_print_subtask_start(1)
 #
 # $1 = label
 #
@@ -127,16 +127,16 @@ _print_process_end() {
 #
 # Example:
 #
-# print_subtask_start "after build hook 1"
+# nos_print_subtask_start "after build hook 1"
 #
 # would produce:
 # AFTER BUILD HOOK 1 -------------------->
-print_subtask_start() {
-  >&2 echo "$(_print_subtask_start "$1")"
+nos_print_subtask_start() {
+  >&2 echo "$(_nos_print_subtask_start "$1")"
 }
 
-_print_subtask_start() {
-  label=$(upcase "$1")
+_nos_print_subtask_start() {
+  label=$(nos_upcase "$1")
   max_length=40
   left=$(expr ${#label} + 1)
   right=1
@@ -165,49 +165,49 @@ _print_subtask_start() {
   echo ""
 }
 
-# print_subtask_success(0)
+# nos_print_subtask_success(0)
 #
 # Print a footer indicating a successful sub task
 #
 # Example:
 #
-# print_subtask_success
+# nos_print_subtask_success
 #
 # would produce:
 #    [√] SUCCESS
-print_subtask_success() {
-  >&2 echo "$(_print_subtask_success)"
+nos_print_subtask_success() {
+  >&2 echo "$(_nos_print_subtask_success)"
 }
 
-_print_subtask_success() {
+_nos_print_subtask_success() {
   echo "   [√] SUCCESS"
 
   # end with a double newline
   echo ""
 }
 
-# print_subtask_fail(0)
+# nos_print_subtask_fail(0)
 #
 # Print a footer indicating a failed sub task
 #
 # Example:
 #
-# print_subtask_fail
+# nos_print_subtask_fail
 #
 # would produce:
 #    [!] FAILED
-print_subtask_fail() {
-  >&2 echo "$(_print_subtask_fail)"
+nos_print_subtask_fail() {
+  >&2 echo "$(_nos_print_subtask_fail)"
 }
 
-_print_subtask_fail() {
+_nos_print_subtask_fail() {
   echo "   [!] FAILED"
 
   # end with a double newline
   echo ""
 }
 
-# print_bullet(1)
+# nos_print_bullet(1)
 #
 # $1 = message
 #
@@ -215,19 +215,19 @@ _print_subtask_fail() {
 #
 # Example:
 #
-# print_bullet "Language Detected : Ruby"
+# nos_print_bullet "Language Detected : Ruby"
 #
 # would produce:
 # +> Language Detected : Ruby
-print_bullet() {
-  >&2 echo "$(_print_bullet "$1")"
+nos_print_bullet() {
+  >&2 echo "$(_nos_print_bullet "$1")"
 }
 
-_print_bullet() {
+_nos_print_bullet() {
   echo "+> $1"
 }
 
-# print_bullet_info(1)
+# nos_print_bullet_info(1)
 #
 # $1 = message
 #
@@ -235,19 +235,19 @@ _print_bullet() {
 #
 # Example:
 #
-# print_bullet_info "Language Detected : Ruby"
+# nos_print_bullet_info "Language Detected : Ruby"
 #
 # would produce:
 #    Language Detected : Ruby
-print_bullet_info() {
-  >&2 echo "$(_print_bullet_info "$1")"
+nos_print_bullet_info() {
+  >&2 echo "$(_nos_print_bullet_info "$1")"
 }
 
-_print_bullet_info() {
+_nos_print_bullet_info() {
   echo "   $1"
 }
 
-# print_bullet_sub(1)
+# nos_print_bullet_sub(1)
 #
 # $1 = message
 #
@@ -255,19 +255,19 @@ _print_bullet_info() {
 #
 # Example:
 #
-# print_bullet_sub "Language Detected : Ruby"
+# nos_print_bullet_sub "Language Detected : Ruby"
 #
 # would produce:
 #    - Language Detected : Ruby
-print_bullet_sub() {
-  >&2 echo "$(_print_bullet_sub "$1")"
+nos_print_bullet_sub() {
+  >&2 echo "$(_nos_print_bullet_sub "$1")"
 }
 
-_print_bullet_sub() {
+_nos_print_bullet_sub() {
   echo "   - $1"
 }
 
-# print_warning(1)
+# nos_print_warning(1)
 #
 # $1 = message
 #
@@ -275,47 +275,47 @@ _print_bullet_sub() {
 #
 # Example:
 #
-# print_warning "We've detected you may be using... (abbreviated for clarity)"
+# nos_print_warning "We've detected you may be using... (abbreviated for clarity)"
 #
 # would produce:
 # -----------------------------  WARNING  -----------------------------
 # We've detected you may be using sessions in a way that could cause
 # unexpected behavior. Feel free to review the following guide for
 # more information : bit.ly/2sA9b
-print_warning() {
-  >&2 echo "$(_print_warning "$1")"
+nos_print_warning() {
+  >&2 echo "$(_nos_print_warning "$1")"
 }
 
-_print_warning() {
+_nos_print_warning() {
   # start with a newline
   # echo ""
 
   # print header
   echo "-----------------------------  WARNING  -----------------------------"
 
-  print_block "$1"
+  nos_print_block "$1"
 }
 
-# print_fatal(2)
+# nos_print_fatal(2)
 #
 # $1 = title
 # $2 = message
 #
 # Example:
 #
-# print_fatal "deploy stream disconnected", "Oh snap... (abbreviated for clarity)"
+# nos_print_fatal "deploy stream disconnected", "Oh snap... (abbreviated for clarity)"
 #
 # would produce:
 # ! DEPLOY STREAM DISCONNECTED !
 #
 # Oh snap the deploy stream just disconnected. No worries, you can
 # visit the dashboard to view the complete output stream.
-print_fatal() {
-  >&2 echo "$(_print_fatal "$1" "$2")"
+nos_print_fatal() {
+  >&2 echo "$(_nos_print_fatal "$1" "$2")"
 }
 
-_print_fatal() {
-  label=$(upcase "$1")
+_nos_print_fatal() {
+  label=$(nos_upcase "$1")
   # start with a newline
   # echo ""
 
@@ -326,10 +326,10 @@ _print_fatal() {
   echo ""
 
   # print message
-  print_block "$2"
+  nos_print_block "$2"
 }
 
-# print_block(1)
+# nos_print_block(1)
 #
 # $1 = message
 #
@@ -337,13 +337,13 @@ _print_fatal() {
 #
 # Example:
 #
-# print_block "We've detected you may be using... (abbreviated for clarity)"
+# nos_print_block "We've detected you may be using... (abbreviated for clarity)"
 #
 # would produce:
 # We've detected you may be using sessions in a way that could cause
 # unexpected behavior. Feel free to review the following guide for
 # more information : bit.ly/2sA9b
-print_block() {
+nos_print_block() {
   message=$1
   message_len=${#1}
   max_line_len=70
@@ -388,7 +388,7 @@ print_block() {
   # echo ""
 }
 
-# upcase(1)
+# nos_upcase(1)
 #
 # $1 = string
 #
@@ -396,11 +396,11 @@ print_block() {
 #
 # Example:
 #
-# upcase "hello world"
+# nos_upcase "hello world"
 #
 # would produce:
 # HELLO WORLD
-upcase() {
+nos_upcase() {
   echo $1 | tr [a-z] [A-Z]
 }
 

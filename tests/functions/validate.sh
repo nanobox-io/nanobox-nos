@@ -4,24 +4,24 @@
 # get common functionality
 [ -z "${lib_dir}" ] && . ../../common.sh
 
-# validate_presence not found
-(validate_presence 'holy_grail' &> /dev/null) && (echo "TEST ('validate_presence missing') FAILED!"; false) || true
+# nos_validate_presence not found
+(nos_validate_presence 'holy_grail' &> /dev/null) && (echo "TEST ('nos_validate_presence missing') FAILED!"; false) || true
 
-# validate_presence found
-set_evar 'PL_keep_value' 'trying'
-validate_presence 'keep' || (echo "TEST ('validate_presence present') FAILED!"; false)
+# nos_validate_presence found
+nos_set_evar 'PL_keep_value' 'trying'
+nos_validate_presence 'keep' || (echo "TEST ('nos_validate_presence present') FAILED!"; false)
 
-# validate_in not found
-(validate_in 'stop' 'playing slacking sleeping wishing' &> /dev/null) && (echo "TEST ('validate_in missing') FAILED!"; false) || true
+# nos_validate_in not found
+(nos_validate_in 'stop' 'playing slacking sleeping wishing' &> /dev/null) && (echo "TEST ('nos_validate_in missing') FAILED!"; false) || true
 
-# validate_in found
-validate_in 'keep' 'working sweating exhausting trying' || (echo "TEST ('validate_in present') FAILED!"; false)
+# nos_validate_in found
+nos_validate_in 'keep' 'working sweating exhausting trying' || (echo "TEST ('nos_validate_in present') FAILED!"; false)
 
-# validate_not_in not found
-(validate_not_in 'keep' 'working sweating exhausting trying' &> /dev/null) && (echo "TEST ('validate_not_in present') FAILED!"; false) || true
+# nos_validate_not_in not found
+(nos_validate_not_in 'keep' 'working sweating exhausting trying' &> /dev/null) && (echo "TEST ('nos_validate_not_in present') FAILED!"; false) || true
 
-# validate_not_in found
-validate_not_in 'stop' 'playing slacking sleeping wishing' || (echo "TEST ('validate_not_in missing') FAILED!"; false)
+# nos_validate_not_in found
+nos_validate_not_in 'stop' 'playing slacking sleeping wishing' || (echo "TEST ('nos_validate_not_in missing') FAILED!"; false)
 
 # nos_valid_integer
 validate_not_in 'stop' 'playing slacking sleeping wishing' || (echo "TEST ('validate_not_in missing') FAILED!"; false)
