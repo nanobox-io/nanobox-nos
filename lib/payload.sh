@@ -14,7 +14,7 @@ nos_eval_payload() {
 # $1 = key
 # 
 # A simple getter for fetching a payload value
-payload() {
+nos_payload() {
   key="PL_${1}_type"
   type=${!key}
 
