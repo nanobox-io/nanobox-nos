@@ -4,27 +4,27 @@
 # get common functionality
 [ -z "${lib_dir}" ] && . ../../common.sh
 
-# template stdout
-set_evar engine_template_dir '/tmp'
-echo "{{big_deal}}" > /tmp/template.mustache
-out=$(template 'template.mustache' '-' '{ "big_deal": "mustache"}')
+# nos_template stdout
+nos_set_evar engine_template_dir '/tmp'
+echo "{{big_deal}}" > /tmp/nos_template.mustache
+out=$(nos_template 'nos_template.mustache' '-' '{ "big_deal": "mustache"}')
 if [[ "${out}" != "mustache" ]]; then
-  echo "TEST ('template stdout') FAILED!"
+  echo "TEST ('nos_template stdout') FAILED!"
   false
 fi
 
-# template file
-template 'template.mustache' '/tmp/template_out' '{ "big_deal": "mustache"}'
-if [[ "$(cat /tmp/template_out)" != "mustache" ]]; then
-  echo "TEST ('template file') FAILED!"
+# nos_template file
+nos_template 'nos_template.mustache' '/tmp/nos_template_out' '{ "big_deal": "mustache"}'
+if [[ "$(cat /tmp/nos_template_out)" != "mustache" ]]; then
+  echo "TEST ('nos_template file') FAILED!"
   false
 fi
 
-# template_file
-set_evar engine_file_dir '/tmp'
-template_file 'template.mustache' '/tmp/mustache.template'
-if [[ ! -a /tmp/mustache.template ]]; then
-  echo "TEST ('template_file') FAILED!"
+# nos_template_file
+nos_set_evar engine_file_dir '/tmp'
+nos_template_file 'nos_template.mustache' '/tmp/mustache.nos_template'
+if [[ ! -a /tmp/mustache.nos_template ]]; then
+  echo "TEST ('nos_template_file') FAILED!"
   false
 fi
 
