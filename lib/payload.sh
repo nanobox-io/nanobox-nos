@@ -66,3 +66,10 @@ nos_etc_dir() {
 nos_code_dir() {
   echo $(nos_payload "code_dir")
 }
+
+# nos_cache_dir(0)
+#
+# A simple getter for fetching the cache_dir value
+nos_cache_dir() {
+  echo $(nos_payload "cache_dir")
+}

@@ -57,4 +57,11 @@ if [[ "$(nos_code_dir)" != "test-code" ]]; then
   false
 fi
 
+# nos_cache_dir
+nos_set_evar 'PL_cache_dir_value' 'test-cache'
+if [[ "$(nos_cache_dir)" != "test-cache" ]]; then
+  echo "TEST ('nos_cache_dir') FAILED!"
+  false
+fi
+
 echo "ALL PAYLOAD TESTS PASSED!"
