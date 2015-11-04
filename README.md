@@ -1,4 +1,4 @@
-# Nos
+# Nos ![Build Status Image](https://travis-ci.org/nanobox-io/nanobox-nos.svg)
 A bash library and framework to expedite Nanobox engine development.
 
 ## Installation
