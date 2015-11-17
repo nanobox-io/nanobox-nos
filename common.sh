@@ -34,5 +34,5 @@ nos_init() {
   engine_lib_dir="${current_dir}/../lib"
 
   # initialize payload
-  nos_eval_payload $1
+  nos_eval_payload "$1"
 }
