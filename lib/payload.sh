@@ -6,7 +6,7 @@
 # Extracts the JSON payload into SHON format and evals the result as
 # local variables prefixed with PL_
 nos_eval_payload() {
-  eval $(echo $1 | shon | sed -e "s/^/PL_/")
+  eval $(echo "$1" | shon | sed -e "s/^/PL_/")
 }
 
 # payload(1)
