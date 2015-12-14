@@ -51,7 +51,11 @@ nos_run_subprocess() {
 #   1) nos_run_hooks "before"
 #   2) nos_run_hooks "after"
 nos_run_hooks() {
-  exec_type="PL_boxfile_${1}_exec_type"
+  if [ "${1}" = "exec" ]; then
+    exec_type="PL_boxfile_exec_type"
+  else
+    exec_type="PL_boxfile_${1}_exec_type"
+  fi
   case ${!exec_type} in
     "string" )
       cmd=PL_boxfile_${1}_exec_value

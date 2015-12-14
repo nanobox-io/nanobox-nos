@@ -16,7 +16,7 @@ To use Nos, simply source the common.sh script and initialize the framework.
 . /opt/nos/common.sh
 
 # initialize Nos with the original arguments
-nos_init $@
+nos_init "$@"
 ```
 
 For an overview of how and when to use Nos, please refer to the [Nanobox Common Tasks](http://docs.nanobox.io/engines/common-tasks/) guide.
