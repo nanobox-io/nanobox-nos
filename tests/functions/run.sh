@@ -40,4 +40,13 @@ if [[ "${out}" != "5f3f681f93de9b6de659fddd5c18e340" ]]; then
   false
 fi
 
+# nos_run_hooks exec
+nos_set_evar 'PL_boxfile_exec_type' 'string'
+nos_set_evar 'PL_boxfile_exec_value' 'true'
+out=$(nos_run_hooks 'exec' 2>&1 | $MD5_COMMAND | cut -f 1 -d ' ')
+if [[ "${out}" != "890417029e6827e90132559566069a81" ]]; then
+  echo "TEST ('nos_run_hooks exec') FAILED! Got ${out}"
+  false
+fi
+
 echo "ALL RUN TESTS PASSED!"
