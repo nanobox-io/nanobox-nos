@@ -6,6 +6,8 @@ pass "unable to start the $VERSION container" docker run --privileged=true -d --
 
 defer docker kill $UUID
 
+pass "evars test failed to pass" docker exec $UUID bash -c "cd /opt/nos/tests/functions; ./evars.sh"
+
 pass "output tests failed to pass" docker exec $UUID bash -c "cd /opt/nos/tests/functions; ./output.sh"
 
 pass "payload tests failed to pass" docker exec $UUID bash -c "cd /opt/nos/tests/functions; ./payload.sh"
