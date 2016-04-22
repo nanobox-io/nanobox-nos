@@ -17,38 +17,44 @@ nos_install() {
 }
 
 # nos_install_verbose(1+)
-# 
+#
 # $@ = list of packages by name
-# 
+#
 # A simple expressive shortcut to install a pkgsrc package via pkgin,
 # verbosely displaying output
 nos_install_verbose() {
   nos_run_subprocess "installing $(nos_package_label "$@")" "pkgin -y in $@"
 }
 
-# nos_install_build(1)
+# nos_uninstall(1+)
 #
-# $1 = package name
+# $@ = list of packages by name
 #
-# A simple expressive shortcut to install a pkgsrc package via pkgin
-# for the build phase only
-nos_install_build() {
-  mkdir -p /var/db/nos
-  echo $1 >> /var/db/nos/build.db
-  nos_run_subprocess "installing ${1}" "pkgin -y in $1"
+# A simple expressive shortcut to uninstall a pkgsrc package via pkgin
+nos_uninstall() {
+  nos_print_bullet "uninstalling $(nos_package_label "$@")..."
+  res=$(pkgin -y rm "$@")
+
+  if [[ ! "$?" = "0" ]]; then
+    nos_print_fatal "failed to nos_uninstall package(s)" "${res}"
+    exit 1
+  fi
 }
 
-# nos_install_cleanup(0)
-# 
-# Uninstall all of the packages that were installed with "install_build"
-nos_install_cleanup() {
-  echo "Not implemented"
+# nos_uninstall_verbose(1+)
+#
+# $@ = list of packages by name
+#
+# A simple expressive shortcut to uninstall a pkgsrc package via pkgin,
+# verbosely displaying output
+nos_uninstall_verbose() {
+  nos_run_subprocess "uninstalling $(nos_package_label "$@")" "pkgin -y rm $@"
 }
 
 # nos_package_label(1+)
-# 
+#
 # $@ = list of packages by name
-# 
+#
 # Returns a string of packages separated by commas, with an "and" before
 # the last item
 nos_package_label() {
