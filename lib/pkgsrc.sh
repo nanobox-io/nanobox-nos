@@ -56,7 +56,7 @@ nos_uninstall_verbose() {
 # Uninstall packages that were installed as dependencies, but are now
 # orphaned after the dependants were uninstalled
 nos_purge_orphaned_deps() {
-  nos_print_bullet "uninstalling orphaned dependencies" "pkgin -y ar"
+  nos_print_bullet "uninstalling orphaned dependencies" "echo \"Y\\n\" | pkgin ar"
 }
 
 # nos_package_label(1+)
