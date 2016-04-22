@@ -5,13 +5,13 @@
 #
 # $1 = field
 #
-# Validate that a field exists within the boxfile payload and has a value.
+# Validate that a field exists within the config payload and has a value.
 # If the check fails, a fatal error will be printed an a non-zero exit
 # will be forced.
 nos_validate_presence() {
   if [ -z $(nos_payload "$1") ]; then
-    label=${1/boxfile_build/}
-    nos_print_fatal "value required" "Boxfile 'build' section requires '${label}' to exist and have a value to continue"
+    label=${1/config/}
+    nos_print_fatal "value required" "boxfile.yml 'code.build' section requires config '${label}' to exist and have a value to continue"
     exit 1
   fi
 }
@@ -35,7 +35,7 @@ nos_validate_in() {
   done
 
   if [ $pass = 0 ]; then
-    label=${field/boxfile_build/}
+    label=${field/config/}
     message_opts=""
 
     for option in $options; do
@@ -45,7 +45,7 @@ nos_validate_in() {
       message_opts="${message_opts}${option}"
     done
 
-    message="Boxfile 'build' section attribute '$label' value must be one of the following: ${message_opts}"
+    message="boxfile.yml 'code.build' section attribute config '$label' value must be one of the following: ${message_opts}"
 
     nos_print_fatal "invalid value", "${message}"
     exit 1
@@ -71,7 +71,7 @@ nos_validate_not_in() {
   done
 
   if [ $pass = 0 ]; then
-    label=${field/boxfile_build/}
+    label=${field/config/}
     message_opts=""
 
     for option in $options; do
@@ -81,7 +81,7 @@ nos_validate_not_in() {
       message_opts="${message_opts}${option}"
     done
 
-    message="Boxfile 'build' section attribute '$label' value must NOT be one of the following: ${message_opts}"
+    message="boxfile.yml 'code.build' section attribute config '$label' value must NOT be one of the following: ${message_opts}"
 
     nos_print_fatal "invalid value", "${message}"
     exit 1

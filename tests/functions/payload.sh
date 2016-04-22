@@ -22,24 +22,17 @@ if [[ "${foo}" != 'bar' ]]; then
   false
 fi
 
-# nos_app_name
-export "PL_app_value=test-app"
-if [[ "$(nos_app_name)" != "test-app" ]]; then
-  echo "TEST ('nos_app_name') FAILED!"
+# nos_app_dir
+export "PL_app_dir_value=test-live"
+if [[ "$(nos_app_dir)" != "test-live" ]]; then
+  echo "TEST ('nos_app_dir') FAILED!"
   false
 fi
 
-# nos_live_dir
-export "PL_live_dir_value=test-live"
-if [[ "$(nos_live_dir)" != "test-live" ]]; then
-  echo "TEST ('nos_live_dir') FAILED!"
-  false
-fi
-
-# nos_deploy_dir
-export "PL_deploy_dir_value=test-deploy"
-if [[ "$(nos_deploy_dir)" != "test-deploy" ]]; then
-  echo "TEST ('nos_deploy_dir') FAILED!"
+# nos_data_dir
+export "PL_data_dir_value=test-deploy"
+if [[ "$(nos_data_dir)" != "test-deploy" ]]; then
+  echo "TEST ('nos_data_dir') FAILED!"
   false
 fi
 

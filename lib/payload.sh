@@ -2,7 +2,7 @@
 # vim: ts=2 sw=2 ft=bash noet
 
 # nos_eval_payload(0)
-# 
+#
 # Extracts the JSON payload into SHON format and evals the result as
 # local variables prefixed with PL_
 nos_eval_payload() {
@@ -32,25 +32,11 @@ nos_payload() {
   fi
 }
 
-# nos_app_name(0)
+# nos_data_dir(0)
 #
-# A simple getter for fetching the app name value
-nos_app_name() {
-  echo "$(nos_payload app)"
-}
-
-# nos_live_dir(0)
-#
-# A simple getter for fetching the live_dir value
-nos_live_dir() {
-  echo $(nos_payload "live_dir")
-}
-
-# nos_depoy_dir(0)
-#
-# A simple getter for fetching the depoy_dir value
-nos_deploy_dir() {
-  echo $(nos_payload "deploy_dir")
+# A simple getter for fetching the data_dir value
+nos_data_dir() {
+  echo $(nos_payload "data_dir")
 }
 
 # nos_etc_dir(0)
@@ -65,6 +51,13 @@ nos_etc_dir() {
 # A simple getter for fetching the code_dir value
 nos_code_dir() {
   echo $(nos_payload "code_dir")
+}
+
+# nos_app_dir(0)
+#
+# A simple getter for fetching the app_dir value
+nos_app_dir() {
+  echo $(nos_payload "app_dir")
 }
 
 # nos_cache_dir(0)
