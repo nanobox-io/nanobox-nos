@@ -51,6 +51,14 @@ nos_uninstall_verbose() {
   nos_run_subprocess "uninstalling $(nos_package_label "$@")" "pkgin -y rm $@"
 }
 
+# nos_purge_orphaned_deps(0)
+#
+# Uninstall packages that were installed as dependencies, but are now
+# orphaned after the dependants were uninstalled
+nos_purge_orphaned_deps() {
+  nos_print_bullet "uninstalling orphaned dependencies" "pkgin -y ar"
+}
+
 # nos_package_label(1+)
 #
 # $@ = list of packages by name
