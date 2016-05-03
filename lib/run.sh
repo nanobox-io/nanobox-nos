@@ -9,7 +9,8 @@
 # A helper to run a process and format the output according to the styleguide
 nos_run_process() {
   nos_print_process_start "${1}"
-  $2 2>&1 | (grep '\S' || echo "") | sed -e 's/\r//g;s/^/   /'
+  siphon --prefix "   " -- bash -c "$2 2>&1"
+  # $2 2>&1 | (grep '\S' || echo "") | sed -e 's/\r//g;s/^/   /'
   nos_print_process_end
 }
 
@@ -22,7 +23,8 @@ nos_run_process() {
 nos_run_subprocess() {
   nos_print_subtask_start "${1}"
   echo "   $ ${2}"
-  ($2 2>&1) | (grep '\S' || echo "") | sed -e 's/\r//g;s/^/   /'
+  siphon --prefix "   " -- bash -c "${2} 2>&1"
+  # ($2 2>&1) | (grep '\S' || echo "") | sed -e 's/\r//g;s/^/   /'
   if [ ${PIPESTATUS[0]} -eq 0 ]; then
     nos_print_subtask_success
   else
