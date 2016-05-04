@@ -44,10 +44,7 @@ For an overview of how and when to use Nos, please refer to the [Nanobox Common 
     - [nos_print_block](#nos_print_block1)
 - [Installing Packages](#installing-packages)
     - [nos_install](#nos_install1)
-    - [nos_install_verbose](#nos_install_verbose1)
     - [nos_uninstall](#nos_uninstall1)
-    - [nos_uninstall_verbose](#nos_uninstall_verbose1)
-    - [nos_purge_orphaned_deps](#nos_purge_orphaned_deps0)
 - [Running Commands](#running-commands)
     - [nos_run_process](#nos_run_process2)
     - [nos_run_subprocess](#nos_run_subprocess2)
@@ -252,30 +249,11 @@ For an overview of how and when to use Nos, please refer to the [Nanobox Common 
 
     A simple expressive shortcut to install a pkgsrc package via pkgin
 
-##### nos_install_verbose(1)
-
-    $1 = package name
-
-    A simple expressive shortcut to install a pkgsrc package via pkgin,
-    with verbose output
-
 ##### nos_uninstall(1)
 
     $1 = package name
 
     A simple expressive shortcut to uninstall a pkgsrc package via pkgin
-
-##### nos_uninstall_verbose(1)
-
-    $1 = package name
-
-    A simple expressive shortcut to uninstall a pkgsrc package via pkgin,
-    with verbose output
-
-##### nos_purge_orphaned_deps(0)
-
-    Uninstall packages that were installed as dependencies, but are now
-    orphaned after the dependants were uninstalled
 
 #### Running Commands
 

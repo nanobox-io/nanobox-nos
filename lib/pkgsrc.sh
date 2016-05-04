@@ -7,22 +7,6 @@
 #
 # A simple expressive shortcut to install a pkgsrc package via pkgin
 nos_install() {
-  nos_print_bullet "installing $(nos_package_label "$@")..."
-  res=$(pkgin -y in "$@")
-
-  if [[ ! "$?" = "0" ]]; then
-    nos_print_fatal "failed to nos_install package(s)" "${res}"
-    exit 1
-  fi
-}
-
-# nos_install_verbose(1+)
-#
-# $@ = list of packages by name
-#
-# A simple expressive shortcut to install a pkgsrc package via pkgin,
-# verbosely displaying output
-nos_install_verbose() {
   nos_run_subprocess "installing $(nos_package_label "$@")" "pkgin -y in $@"
 }
 
@@ -32,31 +16,7 @@ nos_install_verbose() {
 #
 # A simple expressive shortcut to uninstall a pkgsrc package via pkgin
 nos_uninstall() {
-  nos_print_bullet "uninstalling $(nos_package_label "$@")..."
-  res=$(pkgin -y rm "$@")
-
-  if [[ ! "$?" = "0" ]]; then
-    nos_print_fatal "failed to nos_uninstall package(s)" "${res}"
-    exit 1
-  fi
-}
-
-# nos_uninstall_verbose(1+)
-#
-# $@ = list of packages by name
-#
-# A simple expressive shortcut to uninstall a pkgsrc package via pkgin,
-# verbosely displaying output
-nos_uninstall_verbose() {
   nos_run_subprocess "uninstalling $(nos_package_label "$@")" "pkgin -y rm $@"
-}
-
-# nos_purge_orphaned_deps(0)
-#
-# Uninstall packages that were installed as dependencies, but are now
-# orphaned after the dependants were uninstalled
-nos_purge_orphaned_deps() {
-  nos_print_bullet "uninstalling orphaned dependencies" "echo \"Y\\n\" | pkgin ar"
 }
 
 # nos_package_label(1+)
