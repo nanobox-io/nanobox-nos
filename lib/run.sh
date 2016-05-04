@@ -9,7 +9,7 @@
 # A helper to run a process and format the output according to the styleguide
 nos_run_process() {
   nos_print_process_start "${1}"
-   >&2 siphon --prefix "   " -- bash -c "$2 2>&1"
+   >&2 siphon --prefix "   " -- bash -c "${2} 2>&1"
   nos_print_process_end
 }
 
