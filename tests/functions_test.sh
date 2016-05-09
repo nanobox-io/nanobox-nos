@@ -12,8 +12,6 @@ pass "output tests failed to pass" docker exec $UUID bash -c "cd /opt/nos/tests/
 
 pass "payload tests failed to pass" docker exec $UUID bash -c "cd /opt/nos/tests/functions; ./payload.sh"
 
-pass "pkgsrc tests failed to pass" docker exec $UUID bash -c "cd /opt/nos/tests/functions; ./pkgsrc.sh"
-
 pass "render tests failed to pass" docker exec $UUID bash -c "cd /opt/nos/tests/functions; ./render.sh"
 
 pass "run tests failed to pass" docker exec $UUID bash -c "cd /opt/nos/tests/functions; ./run.sh"
