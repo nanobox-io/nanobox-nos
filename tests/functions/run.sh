@@ -8,6 +8,6 @@ MD5_COMMAND=$(which md5sum || echo md5)
 
 # nos_run_process
 out=$(nos_run_process "hello"   "true" 2>&1)
-echo "$out" | grep HELLO &> /dev/null || (echo "TEST ('run_proc hello') FAILED!"; false)
+echo "$out" | grep HELLO &> /dev/null || (echo "TEST ('run_process hello') FAILED!"; false)
 
 echo "ALL RUN TESTS PASSED!"
