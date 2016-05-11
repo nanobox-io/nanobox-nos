@@ -30,12 +30,8 @@ For an overview of how and when to use Nos, please refer to the [Nanobox Common 
     - [nos_validate_in](#nos_validate_in2)
     - [nos_validate_not_in](#nos_validate_not_in2)
 - [Printing Output](#printing-output)
-    - [nos_print_header](#nos_print_header1)
     - [nos_print_process_start](#nos_print_process_start1)
     - [nos_print_process_end](#nos_print_process_end)
-    - [nos_print_subtask_start](#nos_print_subtask_start1)
-    - [nos_print_subtask_success](#nos_print_subtask_success0)
-    - [nos_print_subtask_fail](#nos_print_subtask_fail0)
     - [nos_print_bullet](#nos_print_bullet1)
     - [nos_print_bullet_info](#nos_print_bullet_info1)
     - [nos_print_bullet_sub](#nos_print_bullet_sub1)
@@ -47,7 +43,6 @@ For an overview of how and when to use Nos, please refer to the [Nanobox Common 
     - [nos_uninstall](#nos_uninstall1)
 - [Running Commands](#running-commands)
     - [nos_run_process](#nos_run_process2)
-    - [nos_run_subprocess](#nos_run_subprocess2)
 - [Environment Variables](#environment-variables)
     - [nos_set_evar](#nos_set_evar2)
     - [nos_persist_evar](#nos_persist_evar2)
@@ -121,41 +116,6 @@ For an overview of how and when to use Nos, please refer to the [Nanobox Common 
 
     Creates a hard delineation after a process
 
-##### nos_print_subtask_start(1)
-
-    $1 = label
-
-    Print a header indicating the start of a sub task
-
-    Example:
-
-    nos_print_subtask_start "after build hook 1"
-
-    would produce:
-    AFTER BUILD HOOK 1 -------------------->
-
-##### nos_print_subtask_success(0)
-
-    Print a footer indicating a successful sub task
-
-    Example:
-
-    nos_print_subtask_success
-
-    would produce:
-       [√] SUCCESS
-
-##### nos_print_subtask_fail(0)
-
-    Print a footer indicating a failed sub task
-
-    Example:
-
-    nos_print_subtask_fail
-
-    would produce:
-       [!] FAILED
-
 ##### nos_print_bullet(1)
 
     $1 = message
@@ -167,7 +127,7 @@ For an overview of how and when to use Nos, please refer to the [Nanobox Common 
     nos_print_bullet "Language Detected : Ruby"
 
     would produce:
-    +> Language Detected : Ruby
+    + Language Detected : Ruby
 
 ##### nos_print_bullet_info(1)
 
@@ -180,7 +140,7 @@ For an overview of how and when to use Nos, please refer to the [Nanobox Common 
     nos_print_bullet_info "Language Detected : Ruby"
 
     would produce:
-       Language Detected : Ruby
+     Language Detected : Ruby
 
 ##### nos_print_bullet_sub(1)
 
@@ -193,7 +153,7 @@ For an overview of how and when to use Nos, please refer to the [Nanobox Common 
     nos_print_bullet_sub "Language Detected : Ruby"
 
     would produce:
-       - Language Detected : Ruby
+      - Language Detected : Ruby
 
 ##### nos_print_warning(1)
 

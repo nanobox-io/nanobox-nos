@@ -7,7 +7,7 @@
 #
 # A simple expressive shortcut to install a pkgsrc package via pkgin
 nos_install() {
-  nos_run_subprocess "installing packages" "pkgin -y in $(echo $@)"
+  nos_run_process "Installing packages" "pkgin -y in $(echo $@)"
 }
 
 # nos_uninstall(1+)
@@ -16,5 +16,5 @@ nos_install() {
 #
 # A simple expressive shortcut to uninstall a pkgsrc package via pkgin
 nos_uninstall() {
-  nos_run_subprocess "uninstalling packages" "pkgin -y rm $(echo $@)"
+  nos_run_process "Uninstalling packages" "pkgin -y rm $(echo $@)"
 }

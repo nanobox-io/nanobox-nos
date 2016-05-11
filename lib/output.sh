@@ -1,66 +1,6 @@
 # -*- mode: bash; tab-width: 2; -*-
 # vim: ts=2 sw=2 ft=bash noet
 
-# nos_print_header(1)
-#
-# $1 = label
-#
-# Print a header, formatted to 70 characters, with the label
-#
-# Example:
-#
-# nos_print_header "headline here"
-#
-# would produce:
-# ::::::::::::::::::::::::::: HEADLINE HERE :::::::::::::::::::::::::::
-nos_print_header() {
-  >&2 echo "$(_nos_print_header "$1")"
-}
-
-_nos_print_header() {
-  label=$(nos_upcase "$1")
-  max_length=70
-  middle=$(expr ${#label} + 2)
-  remainder=$(expr $max_length - $middle)
-  left=$(expr $remainder / 2)
-
-  if [[ $(expr $remainder % 2) = 0 ]]; then
-    right=$left
-  else
-    right=$(expr $left + 1)
-  fi
-
-  # start with a newline
-  # echo ""
-
-  # print the left column
-  counter=$left
-  until [ $counter = 0 ]; do
-    let counter--
-    echo -n ":"
-  done
-
-  # print a space
-  echo -n " "
-
-  # print the label
-  echo -n $label
-
-  # print a space
-  echo -n " "
-
-  # print the right column
-  counter=$right
-  until [ $counter = 0 ]; do
-    let counter--
-    echo -n ":"
-  done
-
-  # end with two newlines
-  echo ""
-  # echo ""
-}
-
 # nos_print_process_start(1)
 #
 # $1 = label
@@ -69,26 +9,23 @@ _nos_print_header() {
 #
 # Example:
 #
-# nos_print_process_start "installing ruby-2.2"
+# nos_print_process_start "Updating pkg database"
 #
 # would produce:
-# INSTALLING RUBY-2.2 ------------------------------------------------>
+# + Updating pkg database ----------------------------------------------------- >
 nos_print_process_start() {
   >&2 echo "$(_nos_print_process_start "$1")"
 }
 
 _nos_print_process_start() {
-  label=$(nos_upcase "$1")
-  max_length=70
-  left=$(expr ${#label} + 1)
-  right=1
+  label=$1
+  max_length=80
+  left=$(expr ${#label} + 3)
+  right=2
   middle=$(expr $max_length - $(expr $left + $right))
 
-  # start with a newline
-  echo ""
-
   # print label
-  echo -n $label
+  echo -n "+ $label"
 
   # print a space
   echo -n " "
@@ -101,7 +38,7 @@ _nos_print_process_start() {
   done
 
   # print the right column
-  echo -n ">"
+  echo -n " >"
 
   # end with a
   echo ""
@@ -119,94 +56,6 @@ _nos_print_process_end() {
   echo ""
 }
 
-# nos_print_subtask_start(1)
-#
-# $1 = label
-#
-# Print a header indicating the start of a sub task
-#
-# Example:
-#
-# nos_print_subtask_start "after build hook 1"
-#
-# would produce:
-# AFTER BUILD HOOK 1 -------------------->
-nos_print_subtask_start() {
-  >&2 echo "$(_nos_print_subtask_start "$1")"
-}
-
-_nos_print_subtask_start() {
-  label=$(nos_upcase "$1")
-  max_length=40
-  left=$(expr ${#label} + 1)
-  right=1
-  middle=$(expr $max_length - $(expr $left + $right))
-
-  # start with a newline
-  echo ""
-
-  # print label
-  echo -n $label
-
-  # print a space
-  echo -n " "
-
-  # print middle column
-  counter=$middle
-  until [ $counter = 0 ]; do
-    let counter--
-    echo -n "-"
-  done
-
-  # print the right column
-  echo -n ">"
-
-  # end with a newline
-  echo ""
-}
-
-# nos_print_subtask_success(0)
-#
-# Print a footer indicating a successful sub task
-#
-# Example:
-#
-# nos_print_subtask_success
-#
-# would produce:
-#    [√] SUCCESS
-nos_print_subtask_success() {
-  >&2 echo "$(_nos_print_subtask_success)"
-}
-
-_nos_print_subtask_success() {
-  echo "   [√] SUCCESS"
-
-  # end with a double newline
-  echo ""
-}
-
-# nos_print_subtask_fail(0)
-#
-# Print a footer indicating a failed sub task
-#
-# Example:
-#
-# nos_print_subtask_fail
-#
-# would produce:
-#    [!] FAILED
-nos_print_subtask_fail() {
-  >&2 echo "$(_nos_print_subtask_fail)"
-}
-
-_nos_print_subtask_fail() {
-  echo "   [!] FAILED"
-
-  # end with a double newline
-  echo ""
-}
-
 # nos_print_bullet(1)
 #
 # $1 = message
@@ -218,13 +67,13 @@ _nos_print_subtask_fail() {
 # nos_print_bullet "Language Detected : Ruby"
 #
 # would produce:
-# +> Language Detected : Ruby
+# + Language Detected : Ruby
 nos_print_bullet() {
   >&2 echo "$(_nos_print_bullet "$1")"
 }
 
 _nos_print_bullet() {
-  echo "+> $1"
+  echo "+ $1"
 }
 
 # nos_print_bullet_info(1)
@@ -238,13 +87,13 @@ _nos_print_bullet() {
 # nos_print_bullet_info "Language Detected : Ruby"
 #
 # would produce:
-#    Language Detected : Ruby
+#   Language Detected : Ruby
 nos_print_bullet_info() {
   >&2 echo "$(_nos_print_bullet_info "$1")"
 }
 
 _nos_print_bullet_info() {
-  echo "   $1"
+  echo "  $1"
 }
 
 # nos_print_bullet_sub(1)
@@ -258,20 +107,20 @@ _nos_print_bullet_info() {
 # nos_print_bullet_sub "Language Detected : Ruby"
 #
 # would produce:
-#    - Language Detected : Ruby
+#   - Language Detected : Ruby
 nos_print_bullet_sub() {
   >&2 echo "$(_nos_print_bullet_sub "$1")"
 }
 
 _nos_print_bullet_sub() {
-  echo "   - $1"
+  echo "  - $1"
 }
 
 # nos_print_warning(1)
 #
 # $1 = message
 #
-# Print a warning message, formatted to a 70 character block paragraph
+# Print a warning message, formatted to an 80 character block paragraph
 #
 # Example:
 #
@@ -291,7 +140,7 @@ _nos_print_warning() {
   # echo ""
 
   # print header
-  echo "-----------------------------  WARNING  -----------------------------"
+  echo "----------------------------------  WARNING  ----------------------------------"
 
   nos_print_block "$1"
 }
@@ -346,7 +195,7 @@ _nos_print_fatal() {
 nos_print_block() {
   message=$1
   message_len=${#1}
-  max_line_len=70
+  max_line_len=80
 
   word=""
   i=0
