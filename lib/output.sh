@@ -12,36 +12,15 @@
 # nos_print_process_start "Updating pkg database"
 #
 # would produce:
-# + Updating pkg database ----------------------------------------------------- >
+# - Updating pkg database :
 nos_print_process_start() {
   >&2 echo "$(_nos_print_process_start "$1")"
 }
 
 _nos_print_process_start() {
   label=$1
-  max_length=80
-  left=$(expr ${#label} + 3)
-  right=2
-  middle=$(expr $max_length - $(expr $left + $right))
-
-  # print label
-  echo -n "+ $label"
-
-  # print a space
-  echo -n " "
-
-  # print middle column
-  counter=$middle
-  until [ $counter = 0 ]; do
-    let counter--
-    echo -n "-"
-  done
-
-  # print the right column
-  echo -n " >"
-
-  # end with a
-  echo ""
+  
+  echo "- $label :"
 }
 
 # nos_print_process_end()
@@ -73,7 +52,7 @@ nos_print_bullet() {
 }
 
 _nos_print_bullet() {
-  echo "+ $1"
+  echo "- $1"
 }
 
 # nos_print_bullet_info(1)
