@@ -8,6 +8,8 @@
 # A simple expressive shortcut to install a pkgsrc package via pkgin
 nos_install() {
   nos_run_process "Installing packages" "pkgin -y in $(echo $@)"
+  # run ldconfig to update cache
+  nos_run_process "ldconfig" "sudo ldconfig"
 }
 
 # nos_uninstall(1+)
@@ -17,4 +19,6 @@ nos_install() {
 # A simple expressive shortcut to uninstall a pkgsrc package via pkgin
 nos_uninstall() {
   nos_run_process "Uninstalling packages" "pkgin -y rm $(echo $@)"
+# run ldconfig to to update cache
+  nos_run_process "ldconfig" "sudo ldconfig"
 }
